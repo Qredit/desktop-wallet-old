@@ -1,0 +1,22 @@
+import trunc from 'trunc-html'
+import BaseModel from './base'
+
+export default new BaseModel({
+  type: 'object',
+  properties: {
+    guid: {},
+    date: {
+      format: (data) => data.isoDate
+    },
+    title: {},
+    summary: {
+      format: (data) => trunc(data['content:encoded'], 300).text
+    },
+    url: {
+      format: (data) => data.link
+    },
+    isRead: {
+      format: () => false
+    }
+  }
+})

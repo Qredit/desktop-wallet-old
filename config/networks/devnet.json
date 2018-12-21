@@ -1,0 +1,31 @@
+{
+  "id": "qredit.mainnet",
+  "name": "Qredit Mainnet",
+  "title": "Qredit Mainnet",
+  "server": "http://185.85.18.192:4100",
+  "description": "The Qredit Mainnet",
+  "imagePath": "networks/ark.png",
+  "apiVersion": 1,
+  "slip44": "1",
+  "market": {
+    "enabled": false,
+    "ticker": null
+  },
+  "constants": {
+    "activeDelegates": 51,
+    "epoch": "2017-03-21T13:00:00.000Z"
+  },
+  "nethash": "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193",
+  "explorer": "http://explorer.qredit.cloud",
+  "token": "Qredit",
+  "subunit": "dust",
+  "symbol": "XQR",
+  "fractionDigits": 8,
+  "version": 58,
+  "wif": 187,
+  "knownWallets": {
+    "QjmG1PUnCh1ip9tZnt24FAQv9eXnsERsYk": "Altilly",
+    "QMRhJyc1GDavB8RStdkPpaEbjrziYxgdsv": "Qredit Swap",
+    "QXcPMXiHx2cZ8RGmFCu8yUCWFMxMiLGv1H": "Qredit Genesis"
+  }
+}
