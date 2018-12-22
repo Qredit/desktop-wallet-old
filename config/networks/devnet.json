@@ -1,9 +1,9 @@
 {
-  "id": "qredit.mainnet",
-  "name": "Qredit Mainnet",
-  "title": "Qredit Mainnet",
+  "id": "qredit.devnet",
+  "name": "Qredit Devnet",
+  "title": "Qredit Devnet",
   "server": "http://185.85.18.192:4100",
-  "description": "The Qredit Mainnet",
+  "description": "The Qredit Devnet",
   "imagePath": "networks/ark.png",
   "apiVersion": 1,
   "slip44": "1",
@@ -15,7 +15,7 @@
     "activeDelegates": 51,
     "epoch": "2017-03-21T13:00:00.000Z"
   },
-  "nethash": "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193",
+  "nethash": "not-available-atm",
   "explorer": "http://explorer.qredit.cloud",
   "token": "Qredit",
   "subunit": "dust",
