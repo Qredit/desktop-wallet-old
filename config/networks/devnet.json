@@ -2,7 +2,7 @@
   "id": "qredit.devnet",
   "name": "Qredit Devnet",
   "title": "Qredit Devnet",
-  "server": "http://185.85.18.192:4100",
+  "server": "http://136.144.215.24:4100",
   "description": "The Qredit Devnet",
   "imagePath": "networks/ark.png",
   "apiVersion": 1,
@@ -15,17 +15,13 @@
     "activeDelegates": 51,
     "epoch": "2017-03-21T13:00:00.000Z"
   },
-  "nethash": "not-available-atm",
-  "explorer": "http://explorer.qredit.cloud",
+  "nethash": "a6735cad076c752fc17833ebe909c35d18b4c5ec419ac7c44dcfee0f8c8f5bfe",
+  "explorer": "http://136.144.215.24:4200",
   "token": "Qredit",
-  "subunit": "dust",
-  "symbol": "XQR",
+  "subunit": "ARKTOSHI",
+  "symbol": "DXQR",
   "fractionDigits": 8,
-  "version": 58,
+  "version": 75,
   "wif": 187,
-  "knownWallets": {
-    "QjmG1PUnCh1ip9tZnt24FAQv9eXnsERsYk": "Altilly",
-    "QMRhJyc1GDavB8RStdkPpaEbjrziYxgdsv": "Qredit Swap",
-    "QXcPMXiHx2cZ8RGmFCu8yUCWFMxMiLGv1H": "Qredit Genesis"
-  }
+  "knownWallets": {}
 }
