@@ -47,9 +47,9 @@
     "test:unit:watch": "jest --config __tests__/unit.jest.conf.js --watch"
   },
   "dependencies": {
-    "@nayiem/client": "^0.1.16",
-    "@nayiem/crypto": "^0.2.5",
-    "@nayiem/ledger-transport": "^0.1.0",
+    "@qredit/client": "^0.1.16",
+    "@qredit/crypto": "^0.2.5",
+    "@qredit/ledger-transport": "^0.1.0",
     "@babel/runtime": "^7.2.0",
     "@ledgerhq/hw-transport-node-hid": "^4.24.0",
     "about-window": "^1.12.1",
