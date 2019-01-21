@@ -4,7 +4,7 @@
     class="WalletHeading__PrimaryActions flex items-center"
   >
     <button
-      v-if="!walletVote.publicKey"
+      v-if="showNotVoting"
       v-tooltip="{ content: $t('PAGES.WALLET_SHOW.NO_VOTE'), trigger:'hover' }"
       class="bg-theme-button-special-choice cursor-pointer rounded-full w-2 h-2 m-3"
       @click="goToDelegates"
@@ -34,6 +34,24 @@
     </ButtonModal>
 
     <ButtonModal
+      v-show="!currentWallet.name && currentWallet.isContact && doesNotExist"
+      :class="buttonStyle"
+      :label="$t('PAGES.WALLET_SHOW.ADD_CONTACT')"
+      icon="contact-add"
+      view-box="0 0 16 16"
+    >
+      <template slot-scope="{ toggle, isOpen }">
+        <WalletRenameModal
+          v-if="isOpen"
+          :wallet="currentWallet"
+          :is-new-contact="true"
+          @cancel="toggle"
+          @created="toggle"
+        />
+      </template>
+    </ButtonModal>
+
+    <ButtonModal
       v-show="!currentWallet.isContact"
       :class="buttonStyle"
       :label="$t('TRANSACTION.SEND')"
@@ -45,6 +63,7 @@
           v-if="isOpen"
           :type="0"
           @cancel="toggle"
+          @close="toggle"
           @sent="toggle"
         />
       </template>
@@ -56,6 +75,7 @@
 import { ButtonModal, ButtonReload } from '@/components/Button'
 import { ModalQrCode } from '@/components/Modal'
 import { TransactionModal } from '@/components/Transaction'
+import { WalletRenameModal } from '@/components/Wallet'
 
 export default {
   name: 'WalletHeadingPrimaryActions',
@@ -66,22 +86,39 @@ export default {
     ButtonModal,
     ButtonReload,
     ModalQrCode,
-    TransactionModal
+    TransactionModal,
+    WalletRenameModal
   },
 
   data () {
     return {
-      isRefreshing: false
+      isRefreshing: false,
+      showNotVoting: false
     }
   },
 
   computed: {
     buttonStyle () {
-      return 'option-button mr-2 px-3 py-2'
+      return 'blue-button mr-2 px-3 py-2'
     },
 
     currentWallet () {
       return this.wallet_fromRoute
+    },
+
+    doesNotExist () {
+      return !this.$store.getters['wallet/byAddress'](this.currentWallet.address)
+    }
+  },
+
+  watch: {
+    // Never show the not-voting icon until knowing if the wallet is voting or not
+    'currentWallet.address' () {
+      this.showNotVoting = false
+    },
+    // To react to changes on the injected `walletVote` and changed not-voting icon immediately
+    'walletVote.publicKey' () {
+      this.showNotVoting = !this.walletVote.publicKey
     }
   },
 

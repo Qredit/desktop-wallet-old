@@ -51,6 +51,8 @@
               <!-- Hide it when the step is collapse -->
               <ButtonReload
                 v-if="step === 1"
+                color-class="WalletNew__ButtonReload-colorClass"
+                text-class="hover:text-white"
                 :is-refreshing="isRefreshing"
                 class="WalletNew__refresh-button"
                 @click="refreshAddresses"
@@ -127,6 +129,7 @@
                 :label="$t('PAGES.WALLET_NEW.STEP3.CHECK_ENTIRE_PASSPHRASE')"
                 :text="$t('PAGES.WALLET_NEW.STEP3.VERIFY_ALL_WORDS')"
                 class="my-3"
+                @change="onSwitch"
               />
 
               <PassphraseVerification
@@ -305,11 +308,18 @@ export default {
     additionalSuggestions () {
       const passphrases = Object.values(this.wallets)
 
-      return flatten(passphrases.map(passphrase => passphrase.split(' ')))
+      // Check for Japanese "space"
+      return flatten(passphrases.map(passphrase =>
+        /\u3000/.test(passphrase) ? passphrase.split('\u3000') : passphrase.split(' ')
+      ))
     },
     passphraseWords () {
       const passphrase = this.schema.passphrase
       if (passphrase) {
+        // Check for Japanese "space"
+        if (/\u3000/.test(passphrase)) {
+          return this.schema.passphrase.split('\u3000')
+        }
         return this.schema.passphrase.split(' ')
       }
       return []
@@ -324,8 +334,10 @@ export default {
     },
     nameError () {
       if (this.$v.schema.name.$invalid) {
-        if (!this.$v.schema.name.doesNotExists) {
-          return this.$t('VALIDATION.NAME.DUPLICATED', [this.schema.name])
+        if (!this.$v.schema.name.contactDoesNotExist) {
+          return this.$t('VALIDATION.NAME.EXISTS_AS_CONTACT', [this.schema.name])
+        } else if (!this.$v.schema.name.walletDoesNotExist) {
+          return this.$t('VALIDATION.NAME.EXISTS_AS_WALLET', [this.schema.name])
         } else if (!this.$v.schema.name.schemaMaxLength) {
           return this.$t('VALIDATION.NAME.MAX_LENGTH', [Wallet.schema.properties.name.maxLength])
         // NOTE: not used, unless the minimum length is changed
@@ -397,6 +409,10 @@ export default {
       this.step = step
     },
 
+    onSwitch () {
+      this.isPassphraseVerified = false
+    },
+
     onVerification () {
       this.isPassphraseVerified = true
     },
@@ -440,8 +456,13 @@ export default {
     step5: ['schema.name'],
     schema: {
       name: {
-        doesNotExists (value) {
-          return value === '' || !this.$store.getters['wallet/byName'](value)
+        contactDoesNotExist (value) {
+          const contact = this.$store.getters['wallet/byName'](value)
+          return value === '' || !(contact && contact.isContact)
+        },
+        walletDoesNotExist (value) {
+          const wallet = this.$store.getters['wallet/byName'](value)
+          return value === '' || !(wallet && !wallet.isContact)
         }
       }
     },
@@ -521,5 +542,15 @@ export default {
 .WalletNew__wallets--address:hover {
   transition: all 0.5s;
   @apply .text-theme-wallet-new-selected .no-underline
+}
+
+.WalletNew__ButtonReload-colorClass {
+  @apply .text-grey-dark .bg-theme-button;
+}
+
+.WalletNew__ButtonReload-colorClass:hover {
+  @apply .bg-blue .text-white;
+  box-shadow: 0 5px 15px rgba(9, 100, 228, 0.34);
+  transition: all .1s ease-in
 }
 </style>

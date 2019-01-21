@@ -2,30 +2,65 @@
   "id": "qredit.mainnet",
   "name": "Qredit Mainnet",
   "title": "Qredit Mainnet",
-  "server": "http://185.85.18.192:4100",
+  "server": "http://185.85.18.192:4103",
   "description": "The Qredit Mainnet",
   "imagePath": "networks/ark.png",
-  "apiVersion": 1,
+  "apiVersion": 2,
   "slip44": "1",
   "market": {
-    "enabled": false,
-    "ticker": null
+    "enabled": true,
+    "ticker": "XQR"
   },
+  "feeStatistics": [
+    {
+      "type": 0,
+      "fees": {
+        "avgFee": 10000000,
+        "maxFee": 10000000,
+        "minFee": 10000000
+      }
+    },
+    {
+      "type": 1,
+      "fees": {
+        "avgFee": 500000000,
+        "maxFee": 500000000,
+        "minFee": 500000000
+      }
+    },
+    {
+      "type": 2,
+      "fees": {
+        "avgFee": 2500000000,
+        "maxFee": 2500000000,
+        "minFee": 2500000000
+      }
+    },
+    {
+      "type": 3,
+      "fees": {
+        "avgFee": 100000000,
+        "maxFee": 100000000,
+        "minFee": 100000000
+      }
+    }
+  ],
   "constants": {
     "activeDelegates": 51,
     "epoch": "2017-03-21T13:00:00.000Z"
   },
   "nethash": "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193",
-  "explorer": "http://explorer.qredit.cloud",
-  "token": "Qredit",
-  "subunit": "dust",
+  "explorer": "http://185.85.18.192:4200",
+  "token": "XQR",
+  "subunit": "arktoshi",
   "symbol": "XQR",
   "fractionDigits": 8,
   "version": 58,
   "wif": 187,
   "knownWallets": {
     "QjmG1PUnCh1ip9tZnt24FAQv9eXnsERsYk": "Altilly",
-    "QMRhJyc1GDavB8RStdkPpaEbjrziYxgdsv": "Qredit Swap",
-    "QXcPMXiHx2cZ8RGmFCu8yUCWFMxMiLGv1H": "Qredit Genesis"
-  }
+    "QMRhJyc1GDavB8RStdkPpaEbjrziYxgdsv": "Qredit",
+    "QXcPMXiHx2cZ8RGmFCu8yUCWFMxMiLGv1H": "Qredit Shield",
+    "QPhFPEEXwZAT7WZSmFttDo3oCjeQufuke3": "Genesis"
+}
 }

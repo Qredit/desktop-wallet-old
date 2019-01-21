@@ -2,23 +2,57 @@
   "id": "qredit.devnet",
   "name": "Qredit Devnet",
   "title": "Qredit Devnet",
-  "server": "http://136.144.215.24:4100",
+  "server": "http://159.69.213.75:4103",
   "description": "The Qredit Devnet",
   "imagePath": "networks/ark.png",
-  "apiVersion": 1,
+  "apiVersion": 2,
   "slip44": "1",
   "market": {
     "enabled": false,
     "ticker": null
   },
+  "feeStatistics": [
+    {
+      "type": 0,
+      "fees": {
+        "avgFee": 10000000,
+        "maxFee": 10000000,
+        "minFee": 10000000
+      }
+    },
+    {
+      "type": 1,
+      "fees": {
+        "avgFee": 500000000,
+        "maxFee": 500000000,
+        "minFee": 500000000
+      }
+    },
+    {
+      "type": 2,
+      "fees": {
+        "avgFee": 2500000000,
+        "maxFee": 2500000000,
+        "minFee": 2500000000
+      }
+    },
+    {
+      "type": 3,
+      "fees": {
+        "avgFee": 100000000,
+        "maxFee": 100000000,
+        "minFee": 100000000
+      }
+    }
+  ],
   "constants": {
     "activeDelegates": 51,
     "epoch": "2017-03-21T13:00:00.000Z"
   },
-  "nethash": "a6735cad076c752fc17833ebe909c35d18b4c5ec419ac7c44dcfee0f8c8f5bfe",
+  "nethash": "d5936b189630f9fc00e317d01328583d4364b7094a3cd7934e09882161d5e9b7",
   "explorer": "http://136.144.215.24:4200",
-  "token": "Qredit",
-  "subunit": "ARKTOSHI",
+  "token": "DXQR",
+  "subunit": "arktoshi",
   "symbol": "DXQR",
   "fractionDigits": 8,
   "version": 75,

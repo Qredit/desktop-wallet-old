@@ -1,12 +1,12 @@
 {
   "private": true,
   "name": "qredit-desktop-wallet",
-  "version": "2.1.2",
+  "version": "2.1.9",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qredit/desktop-wallet.git"
+    "url": "git+https://github.com/Qredit/desktop-wallet.git"
   },
-  "author": "Qredit <info@qredit.io>",
+  "author": "Qredit <nayiem@qredit.io>",
   "contributors": [
     "Marco Valize <marco@qredit.io>",
     "Alex Barnsley <alex@ark.io>",
@@ -18,9 +18,9 @@
   "description": "Qredit Desktop Wallet",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/qredit/desktop-wallet/issues"
+    "url": "https://github.com/Qredit/desktop-wallet/issues"
   },
-  "homepage": "https://github.com/qredit/desktop-wallet#readme",
+  "homepage": "https://github.com/Qredit/desktop-wallet#readme",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -31,7 +31,7 @@
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
-    "depcheck": "depcheck ./ --ignores @babel/runtime,babel-core,babel-eslint,babel-register,devtron,eslint-config-standard,eslint-plugin-vue,eslint-plugin-import,eslint-plugin-node,eslint-plugin-promise,eslint-plugin-standard,husky,vue-style-loader,autoprefixer,@vue/test-utils,babel-jest,jest-serializer-vue,jest-vue-preprocessor,jest-extended,@tests/unit,animate.css,lint-staged,purgecss,v-tooltip,@xkeshi/vue-qrcode,file-loader,webpack-cli,@config/networks",
+    "depcheck": "depcheck ./ --ignores @babel/runtime,babel-core,babel-eslint,babel-register,devtron,eslint-config-standard,eslint-plugin-vue,eslint-plugin-import,eslint-plugin-node,eslint-plugin-promise,eslint-plugin-standard,husky,vue-style-loader,autoprefixer,@vue/test-utils,babel-jest,jest-serializer-vue,jest-vue-preprocessor,jest-extended,@tests/unit,animate.css,lint-staged,purgecss,v-tooltip,@xkeshi/vue-qrcode,file-loader,webpack-cli,@config/networks,codecov",
     "dev": "cross-env ENABLE_SCREENSHOT_PROTECTION=false node .electron-vue/dev-runner.js",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src __tests__",
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src __tests__",
@@ -47,9 +47,9 @@
     "test:unit:watch": "jest --config __tests__/unit.jest.conf.js --watch"
   },
   "dependencies": {
-    "@qredit/client": "^0.1.16",
-    "@qredit/crypto": "^0.2.5",
-    "@qredit/ledger-transport": "^0.1.0",
+    "@qae/client": "^0.3.0",
+    "@qae/crypto": "^0.3.0",
+    "@arkecosystem/ledger-transport": "^0.3.0",
     "@babel/runtime": "^7.2.0",
     "@ledgerhq/hw-transport-node-hid": "^4.24.0",
     "about-window": "^1.12.1",
@@ -107,6 +107,7 @@
     "babili-webpack-plugin": "^0.1.2",
     "cfonts": "^2.3.0",
     "chalk": "^2.4.1",
+    "codecov": "^3.1.0",
     "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.0.0",
@@ -161,10 +162,11 @@
     "productName": "Qredit Desktop Wallet",
     "appId": "io.qredit.desktop-wallet",
     "compression": "maximum",
+    "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
     "protocols": {
-      "name": "Qredit URI scheme",
+      "name": "Ark URI scheme",
       "schemes": [
-        "qredit"
+        "ark"
       ],
       "role": "Viewer"
     },

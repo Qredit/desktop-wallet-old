@@ -1,28 +1,41 @@
 <template>
   <li
-    :class="{
-      'flex-col': isFloatingLabel,
-    }"
-    class="ListDividedItem flex justify-between py-4 w-full border-b border-dashed border-theme-line-separator"
+    class="ListDividedItem flex flex-col py-4 w-full border-b border-dashed border-theme-line-separator"
   >
-    <span
+    <div
       :class="{
-        'font-semibold text-xs mb-1': isFloatingLabel
+        'flex-col': isFloatingLabel,
       }"
-      class="ListDividedItem__label text-theme-page-text-light mr-5"
+      class="flex items-center justify-between"
     >
-      {{ label }}
-    </span>
+      <span
+        :class="{
+          'font-semibold text-xs mb-1': isFloatingLabel
+        }"
+        class="ListDividedItem__label text-theme-page-text-light mr-5"
+      >
+        {{ label }}
+      </span>
 
-    <div class="ListDividedItem__value">
-      <slot>
-        <span
-          v-if="value"
-          class="text-theme-page-text"
-        >
-          {{ value }}
-        </span>
-      </slot>
+      <div
+        :class="itemValueClass"
+        class="ListDividedItem__value"
+      >
+        <slot>
+          <span
+            v-if="value"
+            class="text-theme-page-text"
+          >
+            {{ value }}
+          </span>
+        </slot>
+      </div>
+    </div>
+    <div
+      v-if="$slots.content"
+      class="mt-4"
+    >
+      <slot name="content" />
     </div>
   </li>
 </template>
@@ -46,6 +59,11 @@ export default {
       type: [String, Number],
       required: false,
       default: null
+    },
+    itemValueClass: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 }

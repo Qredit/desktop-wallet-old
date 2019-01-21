@@ -8,6 +8,11 @@ exports.NETWORKS = [
   require('./networks/devnet.json')
 ]
 
+exports.PEERS = {
+  'ark.mainnet': require('./peers/mainnet.json'),
+  'ark.devnet': require('./peers/devnet.json')
+}
+
 exports.ANNOUNCEMENTS = {
   rssUrl: 'https://medium.com/feed/@Qredit'
 }
@@ -71,7 +76,7 @@ exports.MARKET = {
     CNY: { symbol: '¥', fractionDigits: 2 },
     EUR: { symbol: '€', fractionDigits: 2 },
     GBP: { symbol: '£', fractionDigits: 2 },
-    HKD: { symbol: '£', fractionDigits: 2 },
+    HKD: { symbol: 'HK$', fractionDigits: 2 },
     IDR: { symbol: 'IDR', fractionDigits: 2 },
     INR: { symbol: '₹', fractionDigits: 2 },
     JPY: { symbol: '¥', fractionDigits: 0 },
@@ -105,8 +110,4 @@ exports.V1 = {
     0 * 1e8, // Multu-payment (not supported yet)
     0 * 1e8 // Delegate resignation (not supported yet)
   ]
-}
-
-exports.EXCHANGE = {
-  changellyId: 'bab9de3731aa'
 }

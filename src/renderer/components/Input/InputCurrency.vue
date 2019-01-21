@@ -174,14 +174,14 @@ export default {
           if (this.maximumError) {
             return this.maximumError
           } else {
-            const amount = this.currency_format(this.minimumAmount, { currency: this.currency })
+            const amount = this.currency_format(this.maximumAmount, { currency: this.currency })
             return this.$t('INPUT_CURRENCY.ERROR.NOT_ENOUGH_AMOUNT', { amount })
           }
         } else if (!this.$v.model.isMoreThanMinimum) {
           if (this.minimumError) {
             return this.minimumError
           } else {
-            const amount = this.currency_format(this.maximumAmount, { currency: this.currency })
+            const amount = this.currency_format(this.minimumAmount, { currency: this.currency })
             return this.$t('INPUT_CURRENCY.ERROR.LESS_THAN_MINIMUM', { amount })
           }
         } else if (this.customError) {
@@ -264,8 +264,10 @@ export default {
      * @param {(String|Number)} value
      */
     updateInputValue (value) {
-      // Ignore empty and not valid values
-      if (value && this.checkAmount(value)) {
+      if (value === '') {
+        this.inputValue = ''
+        return true
+      } else if (value && this.checkAmount(value)) {
         let number = Number(value.toString().replace(',', '.'))
         number.toString().includes('-')
           ? this.inputValue = number.toFixed(number.toString().split('-')[1]) // Small numbers will be like 1e-7 so we use the number after '-' for toFixed()

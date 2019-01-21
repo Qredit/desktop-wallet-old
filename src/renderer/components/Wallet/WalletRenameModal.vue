@@ -1,27 +1,35 @@
 <template>
   <ModalWindow
-    :title="$t('WALLET_RENAME.TITLE')"
+    :title="isNewContact ? $t('WALLET_RENAME.TITLE_ADD') : $t('WALLET_RENAME.TITLE')"
+    container-classes="WalletRenameModal"
     @close="emitCancel"
   >
     <div class="flex flex-col justify-center">
-      <p>{{ $t('WALLET_RENAME.ADDRESS_INFO', { wallet: wallet.address }) }}</p>
+      <p>
+        {{ $t('WALLET_RENAME.ADDRESS_INFO') }}
+        <span class="font-bold">
+          {{ walletName }}
+        </span>
+      </p>
+
       <InputText
-        v-model="schema.name"
-        :is-invalid="$v.schema.name.$invalid"
+        v-model="$v.schema.name.$model"
+        :is-invalid="$v.schema.name.$dirty && $v.schema.name.$invalid"
         :helper-text="nameError"
         :label="$t('WALLET_RENAME.NEW')"
         class="mt-5"
         name="name"
-        @keyup.enter.native="renameWallet"
+        @keyup.esc.native="emitCancel"
+        @keyup.enter.native="isNewContact ? createWallet() : renameWallet()"
       />
 
       <button
         :disabled="$v.schema.name.$invalid"
         class="blue-button mt-5"
         type="button"
-        @click="renameWallet"
+        @click="isNewContact ? createWallet() : renameWallet()"
       >
-        {{ $t('WALLET_RENAME.RENAME') }}
+        {{ isNewContact ? $t('WALLET_RENAME.ADD') : $t('WALLET_RENAME.RENAME') }}
       </button>
     </div>
   </ModalWindow>
@@ -31,6 +39,7 @@
 import { InputText } from '@/components/Input'
 import { ModalWindow } from '@/components/Modal'
 import Wallet from '@/models/wallet'
+import truncate from '@/filters/truncate'
 
 export default {
   name: 'WalletRenameModal',
@@ -46,14 +55,24 @@ export default {
     wallet: {
       type: Object,
       required: true
+    },
+    isNewContact: {
+      type: Boolean,
+      default: false
     }
   },
 
+  data: () => ({
+    originalName: null
+  }),
+
   computed: {
     nameError () {
-      if (this.$v.schema.name.$invalid) {
-        if (!this.$v.schema.name.doesNotExists) {
-          return this.$t('VALIDATION.NAME.DUPLICATED', [this.schema.name])
+      if (this.$v.schema.name.$dirty) {
+        if (!this.$v.schema.name.contactDoesNotExist) {
+          return this.$t('VALIDATION.NAME.EXISTS_AS_CONTACT', [this.schema.name])
+        } else if (!this.$v.schema.name.walletDoesNotExist) {
+          return this.$t('VALIDATION.NAME.EXISTS_AS_WALLET', [this.schema.name])
         } else if (!this.$v.schema.name.schemaMaxLength) {
           return this.$t('VALIDATION.NAME.MAX_LENGTH', [Wallet.schema.properties.name.maxLength])
         // NOTE: not used, unless the minimum length is changed
@@ -62,11 +81,19 @@ export default {
         }
       }
       return null
+    },
+
+    walletName () {
+      if (this.wallet.name && this.wallet.name !== this.wallet.address) {
+        return `${truncate(this.wallet.name, 25)} (${this.wallet_truncate(this.wallet.address)})`
+      }
+      return this.wallet.address
     }
   },
 
   mounted () {
     this.schema.name = this.wallet.name
+    this.originalName = this.wallet.name
   },
 
   methods: {
@@ -89,12 +116,32 @@ export default {
       this.emitRenamed()
     },
 
+    async createWallet () {
+      try {
+        const newName = this.schema.name
+        const { address } = await this.$store.dispatch('wallet/create', {
+          address: this.wallet.address,
+          name: newName,
+          profileId: this.session_profile.id,
+          isContact: true
+        })
+        this.$router.push({ name: 'wallet-show', params: { address } })
+      } catch (error) {
+        this.$error(`${this.$t('PAGES.CONTACT_NEW.FAILED')}: ${error.message}`)
+      }
+      this.emitCreated()
+    },
+
     emitCancel () {
       this.$emit('cancel')
     },
 
     emitRenamed () {
       this.$emit('renamed')
+    },
+
+    emitCreated () {
+      this.$emit('created')
     }
   },
 
@@ -103,13 +150,22 @@ export default {
     step3: ['isPassphraseVerified'],
     schema: {
       name: {
-        doesNotExists (value) {
-          return value === '' ||
-            value === this.wallet.name ||
-            !this.$store.getters['wallet/byName'](value)
+        contactDoesNotExist (value) {
+          const contact = this.$store.getters['wallet/byName'](value)
+          return value === '' || (this.originalName && value === this.originalName) || !(contact && contact.isContact)
+        },
+        walletDoesNotExist (value) {
+          const wallet = this.$store.getters['wallet/byName'](value)
+          return value === '' || (this.originalName && value === this.originalName) || !(wallet && !wallet.isContact)
         }
       }
     }
   }
 }
 </script>
+
+<style>
+.WalletRenameModal {
+  min-width: 35rem;
+}
+</style>

@@ -7,19 +7,19 @@
       'background-color': backgroundColor
     }"
     :disabled="isDisabled"
-    class="ButtonSwitch appearance-none rounded-full flex items-center relative cursor-pointer w-12 h-6 bg-theme-button"
+    class="ButtonSwitch appearance-none rounded-full flex items-center relative cursor-pointer w-12 h-6 bg-theme-switch-button"
     type="button"
     @click="toggle"
   >
     <span
       :class="{
         'bg-theme-option-button-text': !inputIsActive,
-        'bg-blue': inputIsActive
+        'bg-red': inputIsActive
       }"
       :style="{
         'border-color': backgroundColor
       }"
-      class="ButtonSwitch__circle transition rounded-full w-6 h-full absolute border-2 border-theme-button"
+      class="ButtonSwitch__circle transition rounded-full w-6 h-full absolute border-1 border-theme-button"
     />
   </button>
 </template>
@@ -55,18 +55,31 @@ export default {
     inputIsActive: vm.isActive
   }),
 
+  computed: {
+    model: {
+      get () {
+        return this.inputIsActive
+      },
+      set (value) {
+        this.inputIsActive = value
+        this.$emit('change', value)
+      }
+    }
+  },
+
   watch: {
-    isActive (val) {
-      this.inputIsActive = val
+    isActive (isActive) {
+      this.inputIsActive = isActive
     }
   },
 
   methods: {
     toggle () {
-      if (this.isDisabled) return
+      if (this.isDisabled) {
+        return
+      }
 
-      this.inputIsActive = !this.inputIsActive
-      this.$emit('change', this.inputIsActive)
+      this.model = !this.model
     }
   }
 }

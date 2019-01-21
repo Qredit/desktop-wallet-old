@@ -2,6 +2,7 @@
 
 import { app, BrowserWindow, screen } from 'electron'
 import winState from 'electron-window-state'
+import packageJson from '../../package.json'
 
 // It is necessary to require `electron-log` here to use it on the renderer process
 require('electron-log')
@@ -49,6 +50,11 @@ function createWindow () {
   })
 
   mainWindow.webContents.on('did-finish-load', () => {
+    const name = packageJson.build.productName
+    const version = app.getVersion()
+    const windowTitle = `${name} ${version}`
+    mainWindow.setTitle(windowTitle)
+
     broadcastURL(deeplinkingUrl)
   })
 
@@ -75,7 +81,10 @@ if (!gotTheLock) {
   app.on('second-instance', (_, argv) => {
     // Someone tried to run a second instance, we should focus our window.
     // argv: An array of the second instance’s (command line / deep linked) arguments
-    if (process.platform !== 'darwin') {
+    if (process.platform === 'linux') {
+      deeplinkingUrl = argv[1]
+      broadcastURL(deeplinkingUrl)
+    } else if (process.platform !== 'darwin') {
       deeplinkingUrl = argv[2]
       broadcastURL(deeplinkingUrl)
     }
@@ -88,7 +97,10 @@ if (!gotTheLock) {
     }
   })
 
-  if (process.platform !== 'darwin') {
+  if (process.platform === 'linux') {
+    deeplinkingUrl = process.argv[1]
+    broadcastURL(deeplinkingUrl)
+  } else if (process.platform !== 'darwin') {
     deeplinkingUrl = process.argv[2]
     broadcastURL(deeplinkingUrl)
   }
