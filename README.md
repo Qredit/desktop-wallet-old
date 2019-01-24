@@ -1,6 +1,6 @@
 # Ark Desktop Wallet
 
-![Ark Desktop Wallet](./banner.png)
+![Ark Desktop Wallet](./banner2.png)
 
 ## :confetti_ball: Initial release of the all new ARK Desktop Wallet v2 :confetti_ball:
 
