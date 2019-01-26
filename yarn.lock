@@ -649,19 +649,19 @@
   dependencies:
     events "^3.0.0"
 
-"@qae/client@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@qae/client/-/client-0.1.18.tgz#6731fe9cb189a08e4aba710c3d002e9df9545bb1"
-  integrity sha512-nIiQb07hdGQEwRLdRUZcC5fSBHSXmfZL4RLEKvbjnVGAPCVSox+jDFhHRj0ailqoGNYG2wsG09PmYG7Oi0db+A==
+"@qae/client@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@qae/client/-/client-0.3.0.tgz#4c0d67ae8504ed1b02a278186feae8f3ffa6a51f"
+  integrity sha512-twsqR+LlC9rT5rIdgj89OHTWAx4bRT3B1OkGRYhdymNuyy1Hpn7zt1k+v3LIm84Harfo6KHHBhxOhst1wS1UBQ==
   dependencies:
     axios "^0.18.0"
     lodash.orderby "^4.6.0"
     lodash.shuffle "^4.2.0"
 
-"@qae/crypto@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@qae/crypto/-/crypto-0.2.7.tgz#5fef35fcbba3a701204061e01c8ad1eac20ea6bb"
-  integrity sha512-fReP9ue+GKCCUWDQJM9WqFikgJpJcf4R6t6eS9S0QHdbG4ryCghUzX2/4XBEnd8H7hK0zkkBu2vCE63m4JfgSA==
+"@qae/crypto@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@qae/crypto/-/crypto-0.3.0.tgz#f3c403254686a21d7dfb76d780da7d0925a36cb7"
+  integrity sha512-YkGN6Tcl964UGAO/N2g8/NQ4TaHQfXmK6PwF4ZhaXGo4W3QQ0K0btQ+4iVMI0gjnyVuRBFkedPr95TctMJ4uZA==
   dependencies:
     bignumber.js "^8.0.1"
     bip32 "^1.0.2"

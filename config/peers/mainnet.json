@@ -5,79 +5,46 @@
   "version": "2"
 },
 {
-  "ip": "185.85.18.192",
+  "ip": "136.144.170.17",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 },
 {
-  "ip": "159.69.213.75",
+  "ip": "35.163.173.247",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 },
 {
-  "ip": "116.203.58.165",
+  "ip": "54.244.77.1",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 },
 {
-  "ip": "116.203.56.119",
+  "ip": "52.39.109.247",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 },
 {
-  "ip": "159.69.89.111",
+  "ip": "116.203.60.151",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 },
 {
-  "ip": "116.203.33.4",
+  "ip": "95.216.161.183",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 },
 {
-  "ip": "159.69.89.41",
-  "port": 4103,
-  "isHttps": false,
-  "version": "2"
-},
-{
-  "ip": "116.203.62.76",
-  "port": 4103,
-  "isHttps": false,
-  "version": "2"
-},
-{
-  "ip": "159.69.89.179",
-  "port": 4103,
-  "isHttps": false,
-  "version": "2"
-},
-{
-  "ip": "116.203.18.196",
-  "port": 4103,
-  "isHttps": false,
-  "version": "2"
-},
-{
-  "ip": "159.69.89.109",
-  "port": 4103,
-  "isHttps": false,
-  "version": "2"
-},
-{
-  "ip": "159.69.83.115",
+  "ip": "116.202.24.254",
   "port": 4103,
   "isHttps": false,
   "version": "2"
 }
-
-
-
 
 ]

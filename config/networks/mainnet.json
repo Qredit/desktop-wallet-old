@@ -2,7 +2,7 @@
   "id": "qredit.mainnet",
   "name": "Qredit Mainnet",
   "title": "Qredit Mainnet",
-  "server": "http://185.85.18.192:4103",
+  "server": "http://136.144.215.24:4103",
   "description": "The Qredit Mainnet",
   "imagePath": "networks/ark.png",
   "apiVersion": 2,

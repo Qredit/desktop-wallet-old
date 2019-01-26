@@ -1,8 +1,8 @@
-# Qredit Desktop Wallet
+# Ark Desktop Wallet
 
-![Qredit Desktop Wallet](./banner2.png)
+![Ark Desktop Wallet](./banner.png)
 
-## :confetti_ball: Initial release of the all new Qredit Desktop Wallet v2 :confetti_ball:
+## :confetti_ball: Initial release of the all new ARK Desktop Wallet v2 :confetti_ball:
 
 **Note: This is a public beta release. Although the features that are present are expected to be functional and working, it’s still a work in progress and can result in unexpected behaviour. If you find any issues, please open a [GitHub issue](https://github.com/ArkEcosystem/desktop-wallet/issues/new)**
 
