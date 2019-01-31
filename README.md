@@ -1,30 +1,30 @@
 # Qredit Desktop Wallet
 
-![Ark Desktop Wallet](./banner2.png)
+![Qredit Desktop Wallet](./banner2.png)
 
-## :confetti_ball: Initial release of the all new ARK Desktop Wallet v2 :confetti_ball:
+## :confetti_ball: Initial release of the all new Qredit Desktop Wallet v2 :confetti_ball:
 
-**Note: This is a public beta release. Although the features that are present are expected to be functional and working, it’s still a work in progress and can result in unexpected behaviour. If you find any issues, please open a [GitHub issue](https://github.com/ArkEcosystem/desktop-wallet/issues/new)**
+**Note: This is a public beta release. Although the features that are present are expected to be functional and working, it’s still a work in progress and can result in unexpected behaviour. If you find any issues, please open a [GitHub issue](https://github.com/Qredit/desktop-wallet/issues/new)**
 
 ------
 
-[![Build Status](https://badgen.now.sh/circleci/github/ArkEcosystem/desktop-wallet)](https://circleci.com/gh/ArkEcosystem/desktop-wallet)
-[![Latest Version](https://badgen.now.sh/github/release/ArkEcosystem/desktop-wallet)](https://github.com/ArkEcosystem/desktop-wallet/releases)
+[![Build Status](https://badgen.now.sh/circleci/github/Qredit/desktop-wallet)](https://circleci.com/gh/Qredit/desktop-wallet)
+[![Latest Version](https://badgen.now.sh/github/release/Qredit/desktop-wallet)](https://github.com/Qredit/desktop-wallet/releases)
 [![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
 
 ## Download
-[Latest Release](https://github.com/ArkEcosystem/ark-desktop/releases)
+[Latest Release](https://github.com/Qredit/Qredit-desktop/releases)
 
 ## Installing via Package Managers
 
 ### Arch Linux
 
-Install via [AUR](https://aur.archlinux.org/packages/ark-desktop):
+Install via [AUR](https://aur.archlinux.org/packages/Qredit-desktop):
 
 > Manjaro
 
 ```shell
-pamac build ark-desktop
+pamac build Qredit-desktop
 ```
 
 ### Mac OS X
@@ -32,21 +32,21 @@ pamac build ark-desktop
 Install via [Homebrew](https://brew.sh/):
 
 ```shell
-brew cask install ark-desktop-wallet
+brew cask install Qredit-desktop-wallet
 ```
 
 ## Translations
 
-Translations are part of our [ARK Development and Security Bounty Program](https://blog.ark.io/ark-development-and-security-bounty-program-a95122d06879).
+Translations are part of our [Qredit Development and Security Bounty Program](https://blog.Qredit.io/ark-development-and-security-bounty-program-a95122d06879).
 
 Full translations are considered to be `Tier 3`, while grammar fixes, typos, etc. are considered to be `Tier 6`.
 
 Full translations should involve 5 tasks:
  - Create a pull request for the language you are going to translate. If you have doubts about something, use English to explain them.
- - Translate the textual content of the application, using the [English language file](https://github.com/ArkEcosystem/desktop-wallet/blob/develop/src/renderer/i18n/locales/en-US.js) as the reference. To do that, a new file, with the language locale code should be created. The name of the file should be a valid [RFC 5646](https://tools.ietf.org/html/rfc5646).
- - Add the language to the [English language file](https://github.com/ArkEcosystem/desktop-wallet/blob/develop/src/renderer/i18n/locales/en-US.js) at the `LANGUAGES` key.
- - Update the [date and time formats file](https://github.com/ArkEcosystem/desktop-wallet/blob/develop/src/renderer/i18n/date-time-formats.js) to include the short and long format that are used commonly by native speakers.
- - Update the [number formats file](https://github.com/ArkEcosystem/desktop-wallet/blob/develop/src/renderer/i18n/number-formats.js) to include the preferred way of displaying currencies used commonly by native speakers.
+ - Translate the textual content of the application, using the [English language file](https://github.com/Qredit/desktop-wallet/blob/develop/src/renderer/i18n/locales/en-US.js) as the reference. To do that, a new file, with the language locale code should be created. The name of the file should be a valid [RFC 5646](https://tools.ietf.org/html/rfc5646).
+ - Add the language to the [English language file](https://github.com/Qredit/desktop-wallet/blob/develop/src/renderer/i18n/locales/en-US.js) at the `LANGUAGES` key.
+ - Update the [date and time formats file](https://github.com/Qredit/desktop-wallet/blob/develop/src/renderer/i18n/date-time-formats.js) to include the short and long format that are used commonly by native speakers.
+ - Update the [number formats file](https://github.com/Qredit/desktop-wallet/blob/develop/src/renderer/i18n/number-formats.js) to include the preferred way of displaying currencies used commonly by native speakers.
 
 ## Development
 
@@ -127,7 +127,7 @@ yarn test:e2e:full
 
 ## Security
 
-If you discover a security vulnerability within this project, please send an e-mail to security@ark.io. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this project, please send an e-mail to security@Qredit.io. All security vulnerabilities will be promptly addressed.
 
 ## Credits
 
