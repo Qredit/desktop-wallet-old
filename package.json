@@ -14,7 +14,7 @@
     "Lúcio Rubens <lucio@ark.io>",
     "Mario Vega <mario@ark.io>"
   ],
-  "description": "Qredit Ecosystem Desktop Wallet",
+  "description": "Qredit Desktop Wallet",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/qredit/desktop-wallet/issues"
