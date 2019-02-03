@@ -41,7 +41,7 @@
       view-box="0 0 16 16"
     >
       <template slot-scope="{ toggle, isOpen }">
-        <WalletRenameModal
+        <ContactRenameModal
           v-if="isOpen"
           :wallet="currentWallet"
           :is-new-contact="true"
@@ -75,7 +75,7 @@
 import { ButtonModal, ButtonReload } from '@/components/Button'
 import { ModalQrCode } from '@/components/Modal'
 import { TransactionModal } from '@/components/Transaction'
-import { WalletRenameModal } from '@/components/Wallet'
+import { ContactRenameModal } from '@/components/Contact'
 
 export default {
   name: 'WalletHeadingPrimaryActions',
@@ -87,7 +87,7 @@ export default {
     ButtonReload,
     ModalQrCode,
     TransactionModal,
-    WalletRenameModal
+    ContactRenameModal
   },
 
   data () {
@@ -99,7 +99,7 @@ export default {
 
   computed: {
     buttonStyle () {
-      return 'blue-button mr-2 px-3 py-2'
+      return 'option-heading-button mr-2 px-3 py-2'
     },
 
     currentWallet () {

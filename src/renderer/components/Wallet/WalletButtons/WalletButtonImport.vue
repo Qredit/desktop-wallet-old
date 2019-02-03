@@ -4,7 +4,7 @@
       :to="{ name: 'wallet-import' }"
       class="font-bold text-center"
     >
-      <span class="rounded-full bg-theme-button theme-red h-8 w-8 mb-3 mx-auto flex items-center justify-center">
+      <span class="rounded-full bg-theme-button h-8 w-8 mb-3 mx-auto flex items-center justify-center">
         <SvgIcon
           name="arrow-import"
           class="text-center"

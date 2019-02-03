@@ -3,10 +3,10 @@
  */
 .theme-light {
   --theme-page: #edf4f5;
-  --theme-page-text: #6f0f18;
-  --theme-page-text-light: #d22d3d;
-  --theme-page-instructions-text: #6f0f18;
-  --theme-page-instructions-background: #fffffffa;
+  --theme-page-text: #3b4559;
+  --theme-page-text-light: #9ea7bc;
+  --theme-page-instructions-text: #3b4559;
+  --theme-page-instructions-background: rgba(200,200,200,0.4);
   --theme-modal: #ffffff;
 
   --theme-header-text: #2b3748;
@@ -15,7 +15,7 @@
   --theme-announcements-gradient-1: rgba(255,255,255,0);
   --theme-announcements-gradient-2: rgba(255,255,255,0.95);
 
-  --theme-line-separator: #d22d3d;
+  --theme-line-separator: #dae1e7;
   --theme-wallet-overview-border: #dae1e7;
 
   --theme-table-row-hover: #f8f9fd;
@@ -37,8 +37,8 @@
   --theme-wallet-new-unselected: #9ea7bc;
   --theme-wallet-sign-verify-message-text: #c5cfde;
 
-  --theme-feature: #fffffffa;
-  --theme-feature-item-text: #d22d3d;
+  --theme-feature: white;
+  --theme-feature-item-text: #c0cddf;
   --theme-feature-item-hover: #fef4f5;
   --theme-feature-item-alternative: #f0f2f9;
   --theme-feature-item-alternative-text: #8b9bab;
@@ -50,12 +50,13 @@
   --theme-button-special-choice: #e78068;
 
   --theme-heading-background: #343956;
+  --theme-heading-text: #c0cddf;
 
   --theme-chart-background: #f8fafc;
-  --theme-chart-price: #d22d3d;
+  --theme-chart-price: #3b4559;
 
-  --theme-button: #d22d3d;
-  --theme-button-text: #fff;
+  --theme-button: #e0f0fd;
+  --theme-button-text: #037cff;
   --theme-button-light: #f1f5f8;
   --theme-button-light-text: #8795a1;
   --theme-button-inner-box: #c6dcee;
@@ -64,7 +65,11 @@
   --theme-action-button-text-hover: #789fba;
   --theme-option-button: #3d456d;
   --theme-option-button-hover: #cc5e60;
-  --theme-option-button-text: #d22d3d;
+  --theme-option-button-text: #8894cf;
+  --theme-switch-button: #e0f0fd;
+  --theme-option-heading-button: #3d456d;
+  --theme-option-heading-button-hover: #cc5e60;
+  --theme-option-heading-button-text: #8894cf;
   --theme-input-toggle-choice: #f1f5f8;
   --theme-input-toggle-choice-text: #606f7b;
   --theme-input-field-border: #b9c2d7;
@@ -100,19 +105,15 @@
 	--theme-fee-range-shadow: rgba(9, 100, 228, 0.34);
 }
 
-.theme-red {
-   --theme-option-button-text: #fff;
-},
-
 .theme-dark {
   --theme-page: #23252c;
   --theme-page-text: #787fa3;
-  --theme-page-text-light: #d22d3d;
+  --theme-page-text-light: #585c6f;
   --theme-page-instructions-text: #ffffff;
   --theme-page-instructions-background: rgba(255,255,255,0.2);
   --theme-modal: #23252c;
 
-  --theme-header-text: #a37878;
+  --theme-header-text: #787fa3;
   --theme-caption-text: #d7d9e7;
   --theme-caption-read: #787fa3;
   --theme-announcements-gradient-1: rgba(45,47,56,0);
@@ -137,11 +138,11 @@
   --theme-transaction-detail-arrow: #4d536c;
 
   --theme-wallet-new-selected: #787fa3;
-  --theme-wallet-new-unselected: #404457;
+  --theme-wallet-new-unselected: #585c6f;
   --theme-wallet-sign-verify-message-text: #585c6f;
 
   --theme-feature: #2d2f38;
-  --theme-feature-item-text: #d22d3d;
+  --theme-feature-item-text: #5a5e7a;
   --theme-feature-item-hover: #403645;
   --theme-feature-item-alternative: #363844;
   --theme-feature-item-alternative-text: #5d6483;
@@ -152,6 +153,7 @@
   --theme-button-special-choice: #e78068;
 
   --theme-heading-background: #31333d;
+  --theme-heading-text: #c0cddf;
   --theme-chart-price: white;
   --theme-chart-background: #373a43;
 
@@ -166,6 +168,10 @@
   --theme-option-button: #383c4d;
   --theme-option-button-hover: #cc5e60;
   --theme-option-button-text: #5b627c;
+  --theme-switch-button: #383c4d;
+  --theme-option-heading-button: #3d456d;
+  --theme-option-heading-button-hover: #cc5e60;
+  --theme-option-heading-button-text: #8894cf;
   --theme-input-toggle-choice: #333644;
   --theme-input-toggle-choice-text: #4c5166;
   --theme-input-field-border: #585c6f;

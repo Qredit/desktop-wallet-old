@@ -1,15 +1,15 @@
 {
-  "id": "qredit.devnet",
-  "name": "Qredit Devnet",
-  "title": "Qredit Devnet",
-  "server": "http://159.69.213.75:4103",
-  "description": "The Qredit Devnet",
+  "id": "ark.devnet",
+  "name": "Qredit devnet",
+  "title": "Qredit devnet",
+  "server": "http://136.144.170.17:4103",
+  "description": "The Qredit Mainnet",
   "imagePath": "networks/ark.png",
   "apiVersion": 2,
   "slip44": "1",
   "market": {
-    "enabled": false,
-    "ticker": null
+    "enabled": true,
+    "ticker": "XQR"
   },
   "feeStatistics": [
     {
@@ -49,13 +49,18 @@
     "activeDelegates": 51,
     "epoch": "2017-03-21T13:00:00.000Z"
   },
-  "nethash": "d5936b189630f9fc00e317d01328583d4364b7094a3cd7934e09882161d5e9b7",
-  "explorer": "http://136.144.215.24:4200",
-  "token": "DXQR",
+  "nethash": "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193",
+  "explorer": "https://explorer.qredit.io/#",
+  "token": "XQR",
   "subunit": "arktoshi",
-  "symbol": "DXQR",
+  "symbol": "XQR",
   "fractionDigits": 8,
-  "version": 75,
+  "version": 58,
   "wif": 187,
-  "knownWallets": {}
+  "knownWallets": {
+    "QjmG1PUnCh1ip9tZnt24FAQv9eXnsERsYk": "Altilly",
+    "QMRhJyc1GDavB8RStdkPpaEbjrziYxgdsv": "Qredit",
+    "QXcPMXiHx2cZ8RGmFCu8yUCWFMxMiLGv1H": "Qredit Shield",
+    "QPhFPEEXwZAT7WZSmFttDo3oCjeQufuke3": "Genesis"
+}
 }

@@ -19,7 +19,7 @@ a:hover {
 }
 
 a:active {
-  color: #eda8a8
+  color: #8690bd
 }
 
 a:focus,
@@ -70,4 +70,8 @@ img {
 
 .word-break-all {
   word-break: break-all;
+}
+
+.shadow-outline-green {
+  box-shadow: 0 0 0 2px config('colors.green');
 }

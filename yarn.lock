@@ -12,6 +12,41 @@
   resolved "https://registry.yarnpkg.com/7zip/-/7zip-0.0.6.tgz#9cafb171af82329490353b4816f03347aa150a30"
   integrity sha1-nK+xca+CMpSQNTtIFvAzR6oVCjA=
 
+"@arkecosystem/client@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@arkecosystem/client/-/client-0.1.20.tgz#950d0e451521299f4f91d08b6e75de57ba8e5dfd"
+  integrity sha512-ka6y2pELzxcpn2dJf0+JXNBeOb7RY3gjxneIhcCGbUDQIsRzsxxDRGzDXs52h4xAS8V+mKOFDaU44bmHnnQLJA==
+  dependencies:
+    axios "^0.18.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.orderby "^4.6.0"
+    lodash.shuffle "^4.2.0"
+
+"@arkecosystem/crypto@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@arkecosystem/crypto/-/crypto-0.2.5.tgz#694acdcb088c8334dbc923bb4498a7b75ef8715a"
+  integrity sha512-tZjssRp7dV051syJUaSm3cGxBh8CFSszY5S0uhnCBGKxF+9vm5769cpdE/d2I0vfApz3RdHIzht467VigQYpKQ==
+  dependencies:
+    bignumber.js "^8.0.1"
+    bip32 "^1.0.2"
+    bip38 "^2.0.2"
+    bip39 "^2.5.0"
+    bs58check "^2.1.2"
+    bytebuffer "^5.0.1"
+    create-hash "^1.2.0"
+    deepmerge "^2.2.1"
+    joi "^14.0.6"
+    lodash "^4.17.11"
+    moment "^2.22.2"
+    node-forge "^0.7.6"
+    otplib "^10.0.1"
+    pluralize "^7.0.0"
+    secp256k1 "^3.5.2"
+    tiny-glob "^0.2.3"
+    webpack-merge "^4.1.4"
+    webpack-node-externals "^1.7.2"
+    wif "^2.0.6"
+
 "@arkecosystem/ledger-transport@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/ledger-transport/-/ledger-transport-0.1.0.tgz#55de50cec3cd8b8cf43fb6180039ccae85cdc594"
@@ -649,19 +684,20 @@
   dependencies:
     events "^3.0.0"
 
-"@qae/client@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@qae/client/-/client-0.3.0.tgz#4c0d67ae8504ed1b02a278186feae8f3ffa6a51f"
-  integrity sha512-twsqR+LlC9rT5rIdgj89OHTWAx4bRT3B1OkGRYhdymNuyy1Hpn7zt1k+v3LIm84Harfo6KHHBhxOhst1wS1UBQ==
+"@qae/client@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@qae/client/-/client-0.3.1.tgz#0f8c646d591e926b143c9bed7b443c5f895d79c0"
+  integrity sha512-UOYpA/4D3vCfhU/F/2a1TmxhBxnL+Xm45JcsaLLUsimF3usgsGs61U8ahrt/FANRYL9JZWfXAdp7sgzmt4jv7w==
   dependencies:
     axios "^0.18.0"
+    lodash.clonedeep "^4.5.0"
     lodash.orderby "^4.6.0"
     lodash.shuffle "^4.2.0"
 
-"@qae/crypto@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@qae/crypto/-/crypto-0.3.0.tgz#f3c403254686a21d7dfb76d780da7d0925a36cb7"
-  integrity sha512-YkGN6Tcl964UGAO/N2g8/NQ4TaHQfXmK6PwF4ZhaXGo4W3QQ0K0btQ+4iVMI0gjnyVuRBFkedPr95TctMJ4uZA==
+"@qae/crypto@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@qae/crypto/-/crypto-0.3.2.tgz#add2784dc4edb407ac902be7e603b03498f38b16"
+  integrity sha512-IxN+qvZZe5QAuE+7spELNc16iJq8pV03aemQdAp4fNcxeebkPtrEPbD5Fk3Dum79HtknpbBNPpCaFkc2sB63Kg==
   dependencies:
     bignumber.js "^8.0.1"
     bip32 "^1.0.2"
@@ -6448,9 +6484,9 @@ jest@^23.6.0:
     jest-cli "^23.6.0"
 
 joi@^14.0.6:
-  version "14.3.1"
-  resolved "https://registry.yarnpkg.com/joi/-/joi-14.3.1.tgz#164a262ec0b855466e0c35eea2a885ae8b6c703c"
-  integrity sha512-LQDdM+pkOrpAn4Lp+neNIFV3axv1Vna3j38bisbQhETPMANYRbFJFUyOZcOClYvM/hppMhGWuKSFEK9vjrB+bQ==
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-14.3.0.tgz#55f7c5caa8256de74ccb12eb22ab1c19eea02db3"
+  integrity sha512-0HKd1z8MWogez4GaU0LkY1FgW30vR2Kwy414GISfCU41OYgUC2GWpNe5amsvBZtDqPtt7DohykfOOMIw1Z5hvQ==
   dependencies:
     hoek "6.x.x"
     isemail "3.x.x"
@@ -11360,9 +11396,9 @@ webpack-log@^2.0.0:
     uuid "^3.3.2"
 
 webpack-merge@^4.1.4:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.2.1.tgz#5e923cf802ea2ace4fd5af1d3247368a633489b4"
-  integrity sha512-4p8WQyS98bUJcCvFMbdGZyZmsKuWjWVnVHnAS3FFg0HDaRVrPbkivx2RYCre8UiemD67RsiFFLfn4JhLAin8Vw==
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.1.4.tgz#0fde38eabf2d5fd85251c24a5a8c48f8a3f4eb7b"
+  integrity sha512-TmSe1HZKeOPey3oy1Ov2iS3guIZjWvMT2BBJDzzT5jScHTjVC3mpjJofgueEzaEd6ibhxRDD6MIblDr8tzh8iQ==
   dependencies:
     lodash "^4.17.5"
 

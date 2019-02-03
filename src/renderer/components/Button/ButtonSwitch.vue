@@ -14,12 +14,12 @@
     <span
       :class="{
         'bg-theme-option-button-text': !inputIsActive,
-        'bg-red': inputIsActive
+        'bg-blue': inputIsActive
       }"
       :style="{
         'border-color': backgroundColor
       }"
-      class="ButtonSwitch__circle transition rounded-full w-6 h-full absolute border-1 border-theme-button"
+      class="ButtonSwitch__circle transition rounded-full w-6 h-full absolute border-2 border-theme-button"
     />
   </button>
 </template>

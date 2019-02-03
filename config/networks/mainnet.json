@@ -1,8 +1,8 @@
 {
-  "id": "qredit.mainnet",
+  "id": "ark.mainnet",
   "name": "Qredit Mainnet",
   "title": "Qredit Mainnet",
-  "server": "http://136.144.215.24:4103",
+  "server": "http://136.144.170.17:4103",
   "description": "The Qredit Mainnet",
   "imagePath": "networks/ark.png",
   "apiVersion": 2,
@@ -50,7 +50,7 @@
     "epoch": "2017-03-21T13:00:00.000Z"
   },
   "nethash": "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193",
-  "explorer": "http://185.85.18.192:4200",
+  "explorer": "https://explorer.qredit.io/#",
   "token": "XQR",
   "subunit": "arktoshi",
   "symbol": "XQR",
