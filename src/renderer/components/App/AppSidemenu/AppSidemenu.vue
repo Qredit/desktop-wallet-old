@@ -52,6 +52,33 @@
             icon="whitepaper"
             @click="redirect($event)"
           />
+          <!-- Links -->
+          <MenuNavigationItem
+            id="links"
+            :title="$t('APP_SIDEMENU.LINKS')"
+            class="AppSidemenu__item"
+            :is-horizontal="isHorizontal"
+            icon="open-external"
+            @click="redirect($event)"
+          />
+          <!-- Qredid -->
+          <MenuNavigationItem
+            id="qredid"
+            :title="$t('APP_SIDEMENU.QREDID')"
+            class="AppSidemenu__item"
+            :is-horizontal="isHorizontal"
+            icon="verified-address"
+            @click="redirect($event)"
+          />
+                   <!-- Valkyrie -->
+          <MenuNavigationItem
+            id="valkyrie"
+            :title="$t('APP_SIDEMENU.VALKYRIE')"
+            class="AppSidemenu__item"
+            :is-horizontal="isHorizontal"
+            icon="rocket"
+            @click="redirect($event)"
+          />
         </div>
 
         <div class="flexify">
@@ -106,19 +133,17 @@
             class="AppSidemenu__avatar__container relative cursor-pointer flex items-center justify-center hover:opacity-50"
           >
             <RouterLink
-              :class="{
-                'h-12 w-12': session_profile.avatar && isHorizontal,
-                'h-18 w-18': session_profile.avatar && !isHorizontal
-              }"
-              :style="session_profile.avatar ? `backgroundImage: url('${assets_loadImage(session_profile.avatar)}')` : ''"
-              :title="$t('APP_SIDEMENU.CURRENT_PROFILE', { profileName: session_profile.name })"
               :to="{ name: 'profiles' }"
-              class="AppSidemenu__avatar flex background-image bg-center bg-no-repeat border-none"
+              class="AppSidemenu__avatar"
             >
               <ProfileAvatar
                 :profile="session_profile"
-                letter-size="xl"
+                :class="{
+                  'h-12 w-12': session_profile.avatar && isHorizontal,
+                  'h-18 w-18': session_profile.avatar && !isHorizontal
+                }"
                 :title="$t('APP_SIDEMENU.CURRENT_PROFILE', { profileName: session_profile.name })"
+                letter-size="xl"
               >
                 <SvgIcon
                   class="AppSidemenu__avatar__dots text-grey-dark"

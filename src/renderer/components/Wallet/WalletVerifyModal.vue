@@ -59,7 +59,7 @@
 
         <button
           :disabled="$v.form.$invalid"
-          class="blue-button mt-5"
+          class="red-button mt-5"
           type="button"
           @click="verifyMessage"
         >

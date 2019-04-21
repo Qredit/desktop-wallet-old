@@ -64,7 +64,7 @@
       <div class="text-center mt-10">
         <button
           :disabled="!isChangellyEnabled"
-          class="blue-button"
+          class="red-button"
           @click="setConfirmed"
         >
           {{ $t('COMMON.CONFIRM') }}

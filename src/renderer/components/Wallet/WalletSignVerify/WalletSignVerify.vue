@@ -16,7 +16,7 @@
       <div class="flex items-center ml-4">
         <ButtonModal
           :label="$t('SIGN_VERIFY.SIGN')"
-          class="blue-button mr-2 py-2 px-4"
+          class="red-button mr-2 py-2 px-4"
         >
           <template slot-scope="{ toggle, isOpen }">
             <WalletSignModal
@@ -30,7 +30,7 @@
 
         <ButtonModal
           :label="$t('SIGN_VERIFY.VERIFY')"
-          class="blue-button py-2 px-4"
+          class="red-button py-2 px-4"
         >
           <template slot-scope="{ toggle, isOpen }">
             <WalletVerifyModal

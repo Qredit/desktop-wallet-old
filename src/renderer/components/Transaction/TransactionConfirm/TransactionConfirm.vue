@@ -14,14 +14,14 @@
     <footer class="mt-10 flex justify-between items-center">
       <div>
         <button
-          class="TransactionConfirm__back-button blue-button mr-2 px-5"
+          class="TransactionConfirm__back-button red-button mr-2 px-5"
           @click="emitBack"
         >
           {{ $t('COMMON.BACK') }}
         </button>
 
         <button
-          class="TransactionConfirm__send-button blue-button px-2"
+          class="TransactionConfirm__send-button red-button px-2"
           :disabled="wasClicked"
           @click="emitConfirm"
         >

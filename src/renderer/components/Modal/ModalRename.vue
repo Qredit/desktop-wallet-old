@@ -25,7 +25,7 @@
 
       <button
         :disabled="$v.schema.name.$invalid"
-        class="blue-button mt-5"
+        class="red-button mt-5"
         type="button"
         @click="isNewContact ? createWallet() : renameWallet()"
       >

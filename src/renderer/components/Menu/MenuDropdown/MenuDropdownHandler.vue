@@ -3,15 +3,15 @@
     :class="[
       value ? '' : 'text-theme-page-text-light hover:text-theme-page-text',
       'MenuDropdownHandler cursor-pointer transition flex justify-between items-center text-inherit']"
+    @blur="emitBlur"
     @click="emitClick"
-    @blur="onBlur"
   >
     <span>
       <slot>
         <span v-if="prefix.length">
           {{ prefix }}
         </span>
-        <span>{{ value || placeholder }}</span>
+        <span>{{ item || placeholder }}</span>
       </slot>
     </span>
 
@@ -36,7 +36,19 @@ export default {
   },
 
   props: {
+    /**
+     * The value of the selected option
+     */
     value: {
+      type: String,
+      required: false,
+      default: null
+    },
+
+    /**
+     * The visible text of the selected option
+     */
+    item: {
       type: String,
       required: false,
       default: null
@@ -58,16 +70,14 @@ export default {
       type: String,
       required: false,
       default: ''
-    },
-
-    onBlur: {
-      type: Function,
-      required: false,
-      default: () => {}
     }
   },
 
   methods: {
+    emitBlur (event) {
+      this.$emit('blur', event)
+    },
+
     emitClick () {
       this.$emit('click')
     }

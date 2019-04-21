@@ -30,7 +30,7 @@
       </div>
       <button
         :disabled="!selectedNetwork"
-        class="blue-button mt-5"
+        class="red-button mt-5"
         type="button"
         @click="emitSelected"
       >

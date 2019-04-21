@@ -38,7 +38,7 @@
       <div class="mt-5">
         <button
           :disabled="!clicked"
-          class="blue-button"
+          class="red-button"
           @click="emitSelect"
         >
           {{ $t('COMMON.DONE') }}

@@ -1,33 +1,50 @@
 <template>
   <MenuDropdown
     ref="dropdown"
-    :items="options"
+    :items="items"
     :is-disabled="isDisabled"
-    :value="optionText"
+    :value="optionValue"
     class="InputSelect"
     @select="onDropdownSelect"
   >
-    <InputField
-      slot="handler"
-      slot-scope="scopeHandler"
-      :name="name"
-      :label="inputLabel"
-      :value="optionText"
-      :is-dirty="isDirty"
-      :is-disabled="isDisabled"
-      :is-focused="isFocused"
-      :is-invalid="isInvalid"
+    <template
+      v-if="hasItemSlot"
+      v-slot:item="itemScope"
     >
-      <MenuDropdownHandler
-        slot-scope="{ inputClass }"
-        :value="scopeHandler.value"
-        :placeholder="label"
-        :class="inputClass"
-        :on-blur="onBlur"
-        class="InputSelect__input"
-        @click="onHandlerClick"
+      <slot
+        name="input-item"
+        v-bind="itemScope"
       />
-    </InputField>
+    </template>
+
+    <template v-slot:handler="handlerScope">
+      <InputField
+        :name="name"
+        :label="inputLabel"
+        :value="optionText"
+        :is-dirty="isDirty"
+        :is-disabled="isDisabled"
+        :is-focused="isFocused"
+        :is-invalid="isInvalid"
+      >
+        <MenuDropdownHandler
+          slot-scope="{ inputClass }"
+          :value="handlerScope.value"
+          :item="handlerScope.item"
+          :class="inputClass"
+          :placeholder="label"
+          class="InputSelect__input"
+          @blur="onBlur"
+          @click="onHandlerClick"
+        >
+          <slot
+            v-if="hasHandlerSlot"
+            name="input-handler"
+            v-bind="handlerScope"
+          />
+        </MenuDropdownHandler>
+      </InputField>
+    </template>
   </MenuDropdown>
 </template>
 
@@ -63,11 +80,6 @@ export default {
       type: String,
       required: true
     },
-    helperText: {
-      type: String,
-      required: false,
-      default: null
-    },
     isDisabled: {
       type: Boolean,
       required: false,
@@ -96,23 +108,23 @@ export default {
       return this.optionText ? this.label : ''
     },
 
+    hasHandlerSlot () {
+      return !!this.$scopedSlots['input-handler']
+    },
+
+    hasItemSlot () {
+      return !!this.$scopedSlots['input-item']
+    },
+
     isDirty () {
       return !!this.optionValue
     },
 
-    // The `items` are an Object or an Array
-    isKeyValue () {
-      return !Array.isArray(this.items)
-    },
-
-    // These are the options that are visible on the dropdown
-    options () {
-      return this.isKeyValue ? Object.values(this.items) : this.items
-    },
-
-    // This is the text that is visible on the InputField
+    /**
+     * This is the text that is visible on the InputField
+     */
     optionText () {
-      if (this.isKeyValue) {
+      if (!Array.isArray(this.items)) {
         return this.items[this.optionValue]
       }
 
@@ -126,44 +138,36 @@ export default {
   },
 
   watch: {
-    value (val) {
-      this.optionValue = val
-      this.emitInput()
+    value (value) {
+      this.optionValue = value
     }
   },
 
   methods: {
+    emitInput () {
+      this.$emit('input', this.optionValue)
+    },
+
+    onBlur (event) {
+      // To ensure that the code is evaluated after other tasks
+      setTimeout(() => {
+        if (Object.values(document.activeElement.classList).includes('MenuDropdownItem__button')) {
+          event.preventDefault()
+        } else {
+          this.$refs.dropdown.close()
+        }
+      }, 0)
+    },
+
     onHandlerClick () {
       this.isFocused = true
     },
 
-    onDropdownSelect (selectedText) {
+    onDropdownSelect (selectedValue) {
       this.isFocused = false
-
-      // When the items are an Object, get the key associated to `selectedText``
-      if (this.isKeyValue) {
-        this.optionValue = Object.keys(this.items).find(item => {
-          return this.items[item] === selectedText
-        })
-      } else {
-        this.optionValue = selectedText
-      }
+      this.optionValue = selectedValue
 
       this.emitInput()
-    },
-
-    onBlur (ev) {
-      this.$nextTick(() => {
-        if (Object.values(document.activeElement.classList).includes('MenuDropdownItem__button')) {
-          ev.preventDefault()
-        } else {
-          this.$refs.dropdown.close()
-        }
-      })
-    },
-
-    emitInput () {
-      this.$emit('input', this.optionValue)
     }
   }
 }

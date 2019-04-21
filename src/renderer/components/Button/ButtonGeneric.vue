@@ -1,6 +1,6 @@
 <template>
   <button
-    class="ButtonGeneric blue-button"
+    class="ButtonGeneric red-button"
     @click="emitClick"
   >
     <span class="font-semibold">

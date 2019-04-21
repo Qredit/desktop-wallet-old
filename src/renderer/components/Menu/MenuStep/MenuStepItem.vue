@@ -35,7 +35,7 @@
       <footer class="MenuStepItem__footer mt-3 py-4">
         <button
           v-if="!isFirstItem && isBackVisible"
-          class="MenuStepItem__footer__back-button blue-button mr-1"
+          class="MenuStepItem__footer__back-button red-button mr-1"
           @click="emitBack"
         >
           {{ $t('COMMON.BACK') }}
@@ -44,7 +44,7 @@
         <button
           v-if="isNextVisible || isNextEnabled"
           :disabled="!isNextEnabled || isLastItemClicked"
-          class="MenuStepItem__footer__next-button blue-button"
+          class="MenuStepItem__footer__next-button red-button"
           @click="emitNext(isLastItem)"
         >
           {{ isLastItem ? $t('COMMON.DONE') : $t('COMMON.NEXT') }}

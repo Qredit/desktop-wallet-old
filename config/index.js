@@ -4,27 +4,31 @@ exports.APP = {
 }
 
 exports.NETWORKS = [
-  require('./networks/mainnet.json'),
-  require('./networks/devnet.json')
+  require('./networks/mainnet.json')
 ]
 
 exports.PEERS = {
-  'ark.mainnet': require('./peers/mainnet.json'),
-  'ark.devnet': require('./peers/devnet.json')
+  'ark.mainnet': require('./peers/mainnet.json')
 }
 
 exports.ANNOUNCEMENTS = {
-  rssUrl: 'https://medium.com/feed/@Qredit'
+  rssUrl: 'https://medium.com/feed/@hodlerenterprises'
+}
+
+exports.VENDOR_FIELD = {
+  defaultMaxLength: 64
 }
 
 exports.I18N = {
   defaultLocale: 'en-US',
   enabledLocales: [
-    'en-US'
+    'en-US',
+    'it-IT'
   ]
 }
 
 exports.BIP39 = {
+  defaultLanguage: 'english',
   languages: [
     'chinese_simplified',
     'chinese_traditional',
@@ -59,7 +63,7 @@ exports.MARKET = {
   source: {
     baseUrl: 'https://min-api.cryptocompare.com'
   },
-  defaultCurrency: 'USD',
+  defaultCurrency: 'BTC',
   crypto: [
     'BTC',
     'ETH',

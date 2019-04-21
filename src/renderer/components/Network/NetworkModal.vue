@@ -114,6 +114,13 @@
                 class="mt-5"
                 name="explorer"
               />
+
+              <InputText
+                v-model="$v.form.ticker.$model"
+                :label="$t('MODAL_NETWORK.MARKET_TICKER')"
+                class="mt-5"
+                name="ticker"
+              />
             </template>
           </div>
           <div v-else>
@@ -146,13 +153,6 @@
               class="mt-5"
               name="activeDelegates"
             />
-
-            <InputText
-              v-model="$v.form.ticker.$model"
-              :label="$t('MODAL_NETWORK.MARKET_TICKER')"
-              class="mt-5"
-              name="ticker"
-            />
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@
     <button
       v-if="!network && !hasFetched"
       :disabled="$v.form.$invalid"
-      class="blue-button mt-5"
+      class="red-button mt-5"
       type="button"
       @click="fetchNetworkInfo"
     >
@@ -169,7 +169,7 @@
     <div v-else>
       <button
         :disabled="$v.form.$invalid"
-        class="blue-button mt-5"
+        class="red-button mt-5"
         type="button"
         @click="updateNetwork"
       >
@@ -179,7 +179,7 @@
       <button
         v-if="network && !network.isDefault"
         :disabled="isNetworkInUse"
-        class="blue-button mt-5 ml-4"
+        class="red-button mt-5 ml-4"
         type="button"
         @click="removeNetwork"
       >
@@ -212,6 +212,8 @@ import { numeric, required, requiredIf } from 'vuelidate/lib/validators'
 import { InputText, InputToggle } from '@/components/Input'
 import { ModalLoader, ModalWindow } from '@/components/Modal'
 import ClientService from '@/services/client'
+import cryptoCompare from '@/services/crypto-compare'
+
 const requiredIfFull = requiredIf(function () { return this.showFull })
 
 export default {
@@ -469,10 +471,10 @@ export default {
       customNetwork.apiVersion = this.network ? this.network.apiVersion : this.apiVersion
 
       if (this.showFull && this.hasFetched) {
-        this.$store.dispatch('network/addCustomNetwork', customNetwork)
+        await this.$store.dispatch('network/addCustomNetwork', customNetwork)
       } else {
         // Note: this is also used to update the 'default' networks, since the update checks if it exists as custom network
-        this.$store.dispatch('network/updateCustomNetwork', customNetwork)
+        await this.$store.dispatch('network/updateCustomNetwork', customNetwork)
       }
       this.emitSaved()
     },
@@ -488,43 +490,49 @@ export default {
         name: this.form.name,
         description: this.form.description,
         server: this.form.server,
-        // TODO: currently it's just default values
+        // Default values during the core API transition stage
         wif: '170',
         slip44: '1',
-        activeDelegates: '51',
-        ticker: ''
+        activeDelegates: '51'
       }
-      try {
-        // v2 network
-        const networkConfig = await ClientService.fetchNetworkConfig(this.form.server, 2)
-        if (networkConfig) {
-          this.form = {
-            ...networkConfig,
-            ...prefilled,
-            version: networkConfig.version.toString(),
-            epoch: networkConfig.constants.epoch
-          }
 
-          this.apiVersion = 2
+      const fetchAndFill = async (version, callback = null) => {
+        const network = await ClientService.fetchNetworkConfig(this.form.server, version)
+
+        if (network) {
+          const tokenFound = await cryptoCompare.checkTradeable(network.token)
+
+          for (const key of Object.keys(this.form)) {
+            if (network.hasOwnProperty(key)) {
+              this.form[key] = network[key]
+            } else if (prefilled.hasOwnProperty(key)) {
+              this.form[key] = prefilled[key]
+            }
+          }
+          this.form.ticker = tokenFound ? network.token : ''
+          this.form.version = network.version.toString()
+
+          this.apiVersion = version
           this.showFull = true
           this.hasFetched = true
+
+          if (callback) {
+            callback(network)
+          }
         }
+      }
+
+      // Try V2 first and fallback to V1
+      try {
+        await fetchAndFill(2, network => {
+          this.form.epoch = network.constants.epoch
+          if (network.constants.activeDelegates) {
+            this.form.activeDelegates = network.constants.activeDelegates.toString()
+          }
+        })
       } catch (v2Error) {
         try {
-          // v1 network fallback
-          const networkConfig = await ClientService.fetchNetworkConfig(this.form.server, 1)
-          // Populate form with response data
-          if (networkConfig) {
-            this.form = {
-              ...networkConfig,
-              ...prefilled,
-              version: networkConfig.version.toString()
-            }
-
-            this.apiVersion = 1
-            this.showFull = true
-            this.hasFetched = true
-          }
+          await fetchAndFill(1)
         } catch (v1Error) {
           this.$error(this.$t('MODAL_NETWORK.FAILED_FETCH'))
         }
@@ -566,7 +574,7 @@ export default {
       server: {
         required,
         isValid (value) {
-          return /(:\/\/){1}[^\-.]+[a-zA-Z0-9\-_.]*[^\-.]+$/.test(value)
+          return /(:\/\/){1}[a-zA-Z0-9][a-zA-Z0-9\-_.]*[a-zA-Z0-9](:[0-9]+)?$/.test(value)
         },
         hasScheme (value) {
           return /^https?:\/\//.test(value)
@@ -591,7 +599,7 @@ export default {
       explorer: {
         requiredIfFull,
         isValid (value) {
-          return !this.showFull || /(:\/\/){1}[^\-.]+[a-zA-Z0-9\-_.]*[^\-.]+$/.test(value)
+          return !this.showFull || /(:\/\/){1}[a-zA-Z0-9][a-zA-Z0-9\-_.]*[a-zA-Z0-9](:[0-9]+)?$/.test(value)
         },
         hasScheme (value) {
           return !this.showFull || /^https?:\/\//.test(value)
@@ -600,7 +608,7 @@ export default {
       epoch: {
         requiredIfFull,
         isValid (value) {
-          return !this.showFull || /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.000Z$/.test(value)
+          return !this.showFull || /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value)
         }
       },
       wif: {

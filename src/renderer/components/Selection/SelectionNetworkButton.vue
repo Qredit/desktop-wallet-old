@@ -7,7 +7,7 @@
     v-on="$listeners"
   >
     <slot>
-      <div class="flex flex-col items-center justify-center p-1 h-full">
+      <div class="flex flex-col items-center justify-center p-0 h-full">
         <img
           :src="image"
           :class="isCustom ? 'p-2' : null"
