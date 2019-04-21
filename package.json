@@ -194,9 +194,7 @@
       "executableName": "qredit-desktop-wallet",
       "icon": "build/icons",
       "target": [
-        "AppImage",
-        "deb",
-        "tar.gz"
+        "deb"
       ],
       "desktop": {
         "MimeType": "x-scheme-handler/qredit;"
@@ -220,11 +218,6 @@
       "perMachine": true,
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
     }
   }
 }

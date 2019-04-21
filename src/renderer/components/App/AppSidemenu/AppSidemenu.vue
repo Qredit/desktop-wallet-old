@@ -70,7 +70,7 @@
             icon="verified-address"
             @click="redirect($event)"
           />
-                   <!-- Valkyrie -->
+          <!-- Valkyrie -->
           <MenuNavigationItem
             id="valkyrie"
             :title="$t('APP_SIDEMENU.VALKYRIE')"
