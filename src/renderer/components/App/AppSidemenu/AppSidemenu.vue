@@ -52,33 +52,6 @@
             icon="whitepaper"
             @click="redirect($event)"
           />
-          <!-- Links -->
-          <MenuNavigationItem
-            id="links"
-            :title="$t('APP_SIDEMENU.LINKS')"
-            class="AppSidemenu__item"
-            :is-horizontal="isHorizontal"
-            icon="open-external"
-            @click="redirect($event)"
-          />
-          <!-- Qredid -->
-          <MenuNavigationItem
-            id="qredid"
-            :title="$t('APP_SIDEMENU.QREDID')"
-            class="AppSidemenu__item"
-            :is-horizontal="isHorizontal"
-            icon="verified-address"
-            @click="redirect($event)"
-          />
-          <!-- Valkyrie -->
-          <MenuNavigationItem
-            id="valkyrie"
-            :title="$t('APP_SIDEMENU.VALKYRIE')"
-            class="AppSidemenu__item"
-            :is-horizontal="isHorizontal"
-            icon="rocket"
-            @click="redirect($event)"
-          />
         </div>
 
         <div class="flexify">

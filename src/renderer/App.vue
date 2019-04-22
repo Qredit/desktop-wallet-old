@@ -15,7 +15,7 @@
     <div
       v-if="!hasSeenIntroduction"
       :style="`backgroundImage: url('${assets_loadImage(background)}')`"
-      class="px-20 py-16 w-screen h-screen cover"
+      class="px-20 py-16 w-screen h-screen relative"
     >
       <AppIntro
         @done="setIntroDone"
