@@ -109,7 +109,7 @@ export default {
       default: undefined
     },
     value: {
-      type: [String, Number],
+      type: String,
       required: false,
       default: undefined
     }

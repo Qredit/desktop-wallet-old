@@ -73,21 +73,6 @@ const router = new Router({
       component: require('@/pages/Wallet/WalletShow').default
     },
     {
-      path: '/links',
-      name: 'links',
-      component: require('@/pages/Links').default
-    },
-    {
-      path: '/qredid',
-      name: 'qredid',
-      component: require('@/pages/Qredid').default
-    },
-    {
-      path: '/valkyrie',
-      name: 'valkyrie',
-      component: require('@/pages/Valkyrie').default
-    },
-    {
       path: '*',
       redirect: '/'
     }

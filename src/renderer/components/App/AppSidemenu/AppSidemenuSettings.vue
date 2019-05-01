@@ -1,6 +1,6 @@
 <template>
   <div
-    v-click-outside.capture="emitClose"
+    v-click-outside="emitClose"
     :class="isHorizontal ? 'AppSidemenuOptionsSettings--horizontal' : 'AppSidemenuOptionsSettings'"
     class="absolute z-20 theme-dark"
   >

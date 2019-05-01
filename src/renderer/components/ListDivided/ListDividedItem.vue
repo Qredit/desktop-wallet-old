@@ -7,10 +7,9 @@
       class="flex justify-between"
     >
       <span
-        :class="[
-          { 'font-semibold text-xs mb-1': isFloatingLabel },
-          itemLabelClass
-        ]"
+        :class="{
+          'font-semibold text-xs mb-1': isFloatingLabel
+        }"
         class="ListDividedItem__label text-theme-page-text-light mr-5"
       >
         {{ label }}
@@ -58,11 +57,6 @@ export default {
       type: [String, Number],
       required: false,
       default: null
-    },
-    itemLabelClass: {
-      type: String,
-      required: false,
-      default: ''
     },
     itemValueClass: {
       type: String,

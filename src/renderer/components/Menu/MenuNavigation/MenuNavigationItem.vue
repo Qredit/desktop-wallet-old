@@ -6,7 +6,7 @@
     }"
     :disabled="isDisabled"
     class="MenuNavigationItem relative cursor-pointer flex items-center justify-center text-theme-feature-item-text hover:bg-theme-feature-item-hover hover:text-theme-feature-item-hover-text"
-    @click.capture.stop="onClick"
+    @click="onClick"
   >
     <div
       v-if="!isHorizontal"

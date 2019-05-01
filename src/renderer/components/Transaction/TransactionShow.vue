@@ -21,11 +21,10 @@
         </span>
         <ButtonClipboard
           :value="transaction.id"
-          :class="{ 'mr-2': transaction.confirmations }"
-          class="text-theme-page-text-light ml-2"
+          class="text-theme-page-text-light mx-2"
         />
         <button
-          v-if="transaction.confirmations"
+          v-if="transaction.confirmations > 0"
           v-tooltip="{
             content: `${$t('TRANSACTION.OPEN_IN_EXPLORER')}`,
             trigger: 'hover'
@@ -56,16 +55,12 @@
         >
           {{ transaction.blockId | truncateMiddle(30) }}
         </span>
-        <ButtonClipboard
-          :value="transaction.blockId"
-          class="text-theme-page-text-light mx-2"
-        />
         <button
           v-tooltip="{
             content: `${$t('TRANSACTION.OPEN_IN_EXPLORER')}`,
             trigger: 'hover'
           }"
-          class="flex items-center"
+          class="flex items-center ml-2"
           @click="openBlock"
         >
           <SvgIcon

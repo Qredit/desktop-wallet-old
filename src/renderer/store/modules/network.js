@@ -72,10 +72,8 @@ export default new BaseModule(NetworkModel, {
     /*
      * Update the fee statistics of the current network
      */
-    async fetchFees ({ commit, rootGetters }, network = null) {
-      if (!network) {
-        network = rootGetters['session/network']
-      }
+    async fetchFees ({ commit, rootGetters }) {
+      const network = rootGetters['session/network']
 
       if (network.apiVersion === 2) {
         try {
@@ -90,11 +88,9 @@ export default new BaseModule(NetworkModel, {
       }
     },
 
-    async addCustomNetwork ({ dispatch, commit }, network) {
+    addCustomNetwork ({ dispatch, commit }, network) {
       commit('ADD_CUSTOM_NETWORK', network)
       dispatch('create', network)
-
-      await dispatch('fetchFees', network)
     },
 
     async updateCustomNetwork ({ dispatch, commit, rootGetters }, network) {
@@ -107,8 +103,6 @@ export default new BaseModule(NetworkModel, {
         await dispatch('session/setProfileId', rootGetters['session/profileId'], { root: true })
         eventBus.emit('client:changed')
       }
-
-      await dispatch('fetchFees', network)
     },
 
     removeCustomNetwork ({ dispatch, commit }, id) {

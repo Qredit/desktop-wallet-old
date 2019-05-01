@@ -134,7 +134,7 @@ app.on('open-url', (event, url) => {
   broadcastURL(deeplinkingUrl)
 })
 
-app.setAsDefaultProtocolClient('qredit', process.execPath, ['--'])
+app.setAsDefaultProtocolClient('ark', process.execPath, ['--'])
 
 /**
  * Auto Updater
