@@ -1,0 +1,9 @@
+// .vscode/settings.json
+{
+    // ...
+  
+    "tslint.typeCheck": true, 
+  
+    // ...
+  }
+  
