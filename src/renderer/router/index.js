@@ -22,6 +22,11 @@ const router = new Router({
       name: 'valkyrie',
       component: require('@/pages/Valkyrie').default
     },
+    {
+      path: '/links',
+      name: 'links',
+      component: require('@/pages/Links').default
+    },
     // {
     //   path: '/search',
     //   name: 'search',
