@@ -52,8 +52,6 @@
             icon="whitepaper"
             @click="redirect($event)"
           />
-
-          <!-- Valkyrie -->
           <MenuNavigationItem
             id="valkyrie"
             :title="$t('APP_SIDEMENU.VALKYRIE')"
