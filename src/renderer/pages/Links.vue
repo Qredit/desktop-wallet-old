@@ -8,7 +8,7 @@
     <br>
     <button
       class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
-      @click="electron_openExternal('https://google.com');"
+      @click="electron_openExternal('https://qredit.io/restapidocs/');"
     >
       <br>
       <h4>
@@ -24,7 +24,7 @@
     <br>
     <button
       class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
-      @click="electron_openExternal('https://google.com');"
+      @click="electron_openExternal('https://explorer.qredit.io');"
     >
       <br>
       <h4>
@@ -40,7 +40,7 @@
     <br>
     <button
       class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
-      @click="electron_openExternal('https://google.com');"
+      @click="electron_openExternal('https://docs.qredit.io');"
     >
       <br>
       <h4>
@@ -56,7 +56,7 @@
     <br>
     <button
       class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
-      @click="electron_openExternal('https://google.com');"
+      @click="electron_openExternal('https://qredit.network');"
     >
       <br>
       <h4>
@@ -72,7 +72,7 @@
     <br>
     <button
       class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
-      @click="electron_openExternal('https://google.com');"
+      @click="electron_openExternal('http://qredit.world-domination.org/');"
     >
       <br>
       <h4>
@@ -88,7 +88,23 @@
     <br>
     <button
       class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
-      @click="electron_openExternal('https://google.com');"
+      @click="electron_openExternal('https://www.altilly.com/market/XQR_BTC');"
+    >
+      <br>
+      <h4>
+        <span style="color: #fff;">
+          Click here!
+        </span>
+      </h4>
+    </button>
+    <div class="Announcements__line-separator mt-6" />
+    <h3>About Qredit and Hodler Enterprises</h3>
+    <br>
+    <div>Learn more about Hodler Enterprises, the company behind Qredit.</div>
+    <br>
+    <button
+      class="red-button cursor-pointer inline-flex items-center self-stretch refresh-button mr-2 py-2 px-4 rounded mr-2 px-3 py-2"
+      @click="electron_openExternal('https://hodler.enterprises/project/qredit/');"
     >
       <br>
       <h4>
