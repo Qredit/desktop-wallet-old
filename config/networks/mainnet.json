@@ -1,9 +1,9 @@
 {
   "id": "ark.mainnet",
-  "name": "Qredit Mainnet",
-  "title": "Qredit Mainnet",
+  "name": "Qredit",
+  "title": "Qredit",
   "server": "http://136.144.170.17:4103",
-  "description": "The Qredit Mainnet",
+  "description": "Qredit",
   "imagePath": "networks/ark.png",
   "apiVersion": 2,
   "slip44": "1",

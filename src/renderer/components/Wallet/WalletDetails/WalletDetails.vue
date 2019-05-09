@@ -89,17 +89,9 @@
                 {{ votedDelegate.rank }}
               </strong>
             </i18n>
-            <i18n
-              tag="span"
-              class="font-semibold pl-6"
-              path="WALLET_DELEGATES.PRODUCTIVITY_BANNER"
-            >
-              <strong place="productivity">
-                {{ getProductivity() }}
-              </strong>
-            </i18n>
           </template>
         </div>
+
         <div
           v-else-if="isOwned && !votedDelegate"
           class="flex"
@@ -111,11 +103,22 @@
       </div>
       <div
         v-if="votedDelegate && !isAwaitingConfirmation && !isLoadingVote"
-        class="WalletDetails__button rounded-r"
+        class="WalletDetails__button"
         @click="openUnvote"
       >
         {{ $t('WALLET_DELEGATES.UNVOTE') }}
       </div>
+      <button
+        class="WalletDetails__button rounded-r"
+        @click="electron_openExternal('http://docs.qredit.network/voting/qredit-dpos-explained.html#why-should-i-vote-for-a-delegate');"
+      >
+        <br>
+        <h5>
+          <span style="color: #d22d3d;">
+            Why should I vote?
+          </span>
+        </h5>
+      </button>
 
       <!-- Vote/unvote modal -->
       <TransactionModal
@@ -151,7 +154,7 @@ import { at, clone } from 'lodash'
 import { WalletSelectDelegate } from '@/components/Wallet'
 import { ButtonGeneric } from '@/components/Button'
 import { TransactionModal } from '@/components/Transaction'
-import { WalletExchange, WalletHeading, WalletTransactions, WalletDelegates, WalletStatistics } from '../'
+import { WalletHeading, WalletTransactions, WalletDelegates, WalletStatistics } from '../'
 import WalletSignVerify from '../WalletSignVerify'
 import { MenuTab, MenuTabItem } from '@/components/Menu'
 import SvgIcon from '@/components/SvgIcon'
@@ -163,7 +166,6 @@ export default {
     MenuTabItem,
     TransactionModal,
     WalletDelegates,
-    WalletExchange,
     WalletHeading,
     WalletSelectDelegate,
     WalletSignVerify,
@@ -211,13 +213,6 @@ export default {
         tabs.push({
           component: 'WalletSignVerify',
           text: this.$t('PAGES.WALLET.SIGN_VERIFY')
-        })
-      }
-
-      if (this.currentNetwork && !this.currentWallet.isContact && this.currentNetwork.market && this.currentNetwork.market.enabled) {
-        tabs.push({
-          component: 'WalletExchange',
-          text: this.$t('PAGES.WALLET.PURCHASE', { ticker: this.currentNetwork.market.ticker })
         })
       }
 
@@ -360,11 +355,6 @@ export default {
       } finally {
         this.isLoadingVote = false
       }
-    },
-
-    getProductivity () {
-      const productivity = this.votedDelegate.production.productivity
-      return this.formatter_percentage(productivity)
     },
 
     openUnvote () {

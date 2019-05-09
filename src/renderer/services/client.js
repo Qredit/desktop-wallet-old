@@ -1,5 +1,5 @@
-import ApiClient from '@arkecosystem/client'
-import { crypto, transactionBuilder } from '@arkecosystem/crypto'
+import ApiClient from '@qae/client'
+import { crypto, transactionBuilder } from '@qae/crypto'
 import axios from 'axios'
 import { castArray, chunk, orderBy } from 'lodash'
 import dayjs from 'dayjs'
@@ -168,8 +168,7 @@ export default class ClientService {
         return {
           ...delegate,
           production: {
-            approval: delegate.approval,
-            productivity: delegate.productivity
+            approval: delegate.approval
           },
           blocks: {
             produced: delegate.producedblocks,
@@ -717,9 +716,7 @@ export default class ClientService {
    */
   __signTransaction ({ transaction, passphrase, secondPassphrase, wif }, returnObject = false) {
     const network = store.getters['session/network']
-    transaction = transaction.network({
-      pubKeyHash: network.version
-    })
+    transaction = transaction.network(network.version)
 
     // TODO replace with dayjs
     const epochTime = moment(network.constants.epoch).utc().valueOf()

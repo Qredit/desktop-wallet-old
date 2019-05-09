@@ -53,16 +53,6 @@
             @click="redirect($event)"
           />
 
-          <!-- Valkyrie -->
-          <MenuNavigationItem
-            id="valkyrie"
-            :title="$t('APP_SIDEMENU.VALKYRIE')"
-            class="AppSidemenu__item"
-            :is-horizontal="isHorizontal"
-            icon="rocket"
-            @click="redirect($event)"
-          />
-
           <!-- Links -->
           <MenuNavigationItem
             id="links"
@@ -70,6 +60,16 @@
             class="AppSidemenu__item"
             :is-horizontal="isHorizontal"
             icon="link"
+            @click="redirect($event)"
+          />
+
+          <!-- Valkyrie -->
+          <MenuNavigationItem
+            id="valkyrie"
+            :title="$t('APP_SIDEMENU.VALKYRIE')"
+            class="AppSidemenu__item"
+            :is-horizontal="isHorizontal"
+            icon="valkyrie"
             @click="redirect($event)"
           />
         </div>

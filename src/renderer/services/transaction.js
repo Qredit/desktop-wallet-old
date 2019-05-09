@@ -1,5 +1,5 @@
 import { TRANSACTION_TYPES } from '@config'
-import { crypto } from '@arkecosystem/crypto'
+import { crypto } from '@qae/crypto'
 
 export default class TransactionService {
   /*

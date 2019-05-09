@@ -26,17 +26,6 @@ export default new BaseModel({
         }
       }
     },
-    production: {
-      type: 'object',
-      properties: {
-        productivity: {
-          type: 'number'
-        },
-        approval: {
-          type: 'number'
-        }
-      }
-    },
     forged: {
       type: 'object',
       properties: {

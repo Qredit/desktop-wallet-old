@@ -2,7 +2,7 @@ import cryptoLibrary from 'crypto'
 import { keyBy } from 'lodash'
 import logger from 'electron-log'
 import Vue from 'vue'
-import { crypto } from '@arkecosystem/crypto'
+import { crypto } from '@qae/crypto'
 import eventBus from '@/plugins/event-bus'
 import ledgerService from '@/services/ledger-service'
 
