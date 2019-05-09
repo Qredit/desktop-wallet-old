@@ -659,10 +659,10 @@
     lodash.orderby "^4.6.0"
     lodash.shuffle "^4.2.0"
 
-"@qae/crypto@^2.3.23":
-  version "2.3.23"
-  resolved "https://registry.yarnpkg.com/@qae/crypto/-/crypto-2.3.23.tgz#92e97b8f5f6ca49c505bf3b8433bef441983a60a"
-  integrity sha512-iNkKYGc4HDfL6JK775r6hCbupT7BJULJBUQ+4Q6pFxhEPQ+rNIBAU7LdiIofImq0CtyP3civT4Ry61jlYEmong==
+"@qae/crypto@2.3.35":
+  version "2.3.35"
+  resolved "https://registry.yarnpkg.com/@qae/crypto/-/crypto-2.3.35.tgz#3132404939264bfe724cf56a287cb52a1370d6fc"
+  integrity sha512-gVHrvQSQbvp0vpt5QgTYBUA7QPQK8qUaKAmXmgGN3JJZplJ5Nxb/z0mwloDBhY/VYCQyKNRtZf+6KKDIoO8gbA==
   dependencies:
     bignumber.js "^8.0.2"
     bip32 "^1.0.2"

@@ -5,6 +5,18 @@
     <Collapse
       :is-open="!isPassphraseStep"
     >
+      <ListDivided :is-floating-label="true">
+        <ListDividedItem :label="$t('TRANSACTION.SENDER')">
+          {{ senderLabel }}
+          <span
+            v-if="senderLabel !== currentWallet.address"
+            class="text-sm text-theme-page-text-light"
+          >
+            {{ currentWallet.address }}
+          </span>
+        </ListDividedItem>
+      </ListDivided>
+
       <ListDivided>
         <ListDividedItem :label="$t('INPUT_ADDRESS.LABEL')">
           <WalletAddress
@@ -42,7 +54,7 @@
       <button
         v-show="showVoteUnvoteButton"
         type="button"
-        class="red-button mt-5"
+        class="blue-button mt-5"
         @click="toggleStep"
       >
         {{ isVoter ? $t('WALLET_DELEGATES.UNVOTE') : $t('WALLET_DELEGATES.VOTE') }}
@@ -115,7 +127,7 @@
       <button
         :disabled="$v.form.$invalid"
         type="button"
-        class="red-button mt-5"
+        class="blue-button mt-5"
         @click="onSubmit"
       >
         {{ $t('COMMON.NEXT') }}
@@ -200,12 +212,11 @@ export default {
     },
 
     blocksProduced () {
-      const { produced, missed } = this.delegate.blocks
+      return this.delegate.blocks.produced || '0'
+    },
 
-      if (missed > 0) {
-        return `${produced} (${missed} ${this.$t('WALLET_DELEGATES.MISSED')})`
-      }
-      return produced || '0'
+    senderLabel () {
+      return this.wallet_formatAddress(this.currentWallet.address)
     },
 
     showVoteUnvoteButton () {

@@ -18,11 +18,16 @@ export default new BaseModel({
     blocks: {
       type: 'object',
       properties: {
-        missed: {
-          type: 'integer'
-        },
         produced: {
           type: 'integer'
+        }
+      }
+    },
+    production: {
+      type: 'object',
+      properties: {
+        approval: {
+          type: 'number'
         }
       }
     },

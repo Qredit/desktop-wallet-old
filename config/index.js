@@ -16,7 +16,7 @@ exports.ANNOUNCEMENTS = {
 }
 
 exports.VENDOR_FIELD = {
-  defaultMaxLength: 64
+  defaultMaxLength: 255
 }
 
 exports.I18N = {

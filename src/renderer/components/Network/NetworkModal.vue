@@ -352,8 +352,8 @@ export default {
       this.form.epoch = this.network.constants.epoch
 
       // Default advanced values: ?
-      this.form.wif = this.getStringOrDefault(this.network.wif, '170')
-      this.form.slip44 = this.getStringOrDefault(this.network.slip44, '1')
+      this.form.wif = this.getStringOrDefault(this.network.wif, '187')
+      this.form.slip44 = this.getStringOrDefault(this.network.slip44, '111')
       this.form.activeDelegates = this.getStringOrDefault(this.network.activeDelegates, '51')
       this.form.ticker = this.network.market.ticker || ''
 
@@ -491,8 +491,8 @@ export default {
         description: this.form.description,
         server: this.form.server,
         // TODO: currently it's just default values
-        wif: '170',
-        slip44: '1',
+        wif: '187',
+        slip44: '111',
         activeDelegates: '51'
       }
 
