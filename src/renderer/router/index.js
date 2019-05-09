@@ -30,7 +30,7 @@ const router = new Router({
     // {
     //   path: '/search',
     //   name: 'search',
-    //   component: require('@/pages/Search').default
+    //   component: require ('@/pages/Search').default
     // },
     {
       path: '/contacts/all',
