@@ -49,6 +49,9 @@
     "activeDelegates": 51,
     "epoch": "2017-03-21T13:00:00.000Z"
   },
+    "vendorField": {
+    "maxLength": 255
+  },
   "nethash": "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193",
   "explorer": "https://explorer.qredit.io/#",
   "token": "XQR",
