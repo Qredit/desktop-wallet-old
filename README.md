@@ -1,4 +1,4 @@
-# Ark Desktop Wallet
+# Qredit Desktop Wallet
 
 ![Ark Desktop Wallet](./banner.png)
 
