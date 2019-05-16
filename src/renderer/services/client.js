@@ -23,6 +23,7 @@ export default class ClientService {
 
   /**
    * Fetch the network configuration according to the version.
+   * In case the `vendorField` length has changed, updates the network data.
    * Create a new client to isolate the main client.
    *
    * @param {String} server
@@ -43,13 +44,28 @@ export default class ClientService {
 
       return data.network
     } else {
-      const { data } = await client.resource('node').configuration()
+      const response = await client.resource('node').configuration()
+      const data = response.data.data
 
-      return data.data
+      const currentNetwork = store.getters['session/network']
+      if (currentNetwork.nethash === data.nethash) {
+        const newLength = data.constants.vendorFieldLength
+
+        if (newLength && (!currentNetwork.vendorField || newLength !== currentNetwork.vendorField.maxLength)) {
+          currentNetwork.vendorField = {
+            maxLength: newLength
+          }
+
+          await store.dispatch('network/update', currentNetwork)
+        }
+      }
+
+      return data
     }
   }
 
   /**
+   * TODO: Remove unnecessary endpoints once core 2.4 is released (maybe wait until 2.5 so other chains have updated)
    * Only for V2
    * Get the configuration of a peer
    * @param {String} host - URL of the host (using `core-p2p` port)
@@ -57,21 +73,30 @@ export default class ClientService {
    * @return {(Object|null)}
    */
   static async fetchPeerConfig (host, timeout = 3000) {
-    try {
-      const { data } = await axios({
-        url: `${host}/config`,
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        timeout
-      })
-      if (data) {
-        return data.data
+    const walletApiHost = host.replace(/:\d+/, ':4040')
+    const endpoints = [
+      `${host}/config`,
+      `${walletApiHost}/config`,
+      walletApiHost
+    ]
+
+    for (const endpoint of endpoints) {
+      try {
+        const { data } = await axios({
+          url: endpoint,
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          timeout
+        })
+        if (data) {
+          return data.data
+        }
+      } catch (error) {
+        // TODO only if a new feature to enable logging is added
+        // console.log(`Error on \`${host}\``)
       }
-    } catch (error) {
-      // TODO only if a new feature to enable logging is added
-      // console.log(`Error on \`${host}\``)
     }
 
     return null
@@ -81,8 +106,28 @@ export default class ClientService {
     if (apiVersion === 1) {
       throw new Error('Fee statistics are only available on V2 networks')
     }
-    const { feeStatistics } = await ClientService.fetchNetworkConfig(server, apiVersion, timeout)
-    return feeStatistics
+
+    try {
+      const client = new ApiClient(server, apiVersion)
+      if (timeout) {
+        client.http.timeout = timeout
+      }
+
+      const { data } = await client.resource('node').fees(30)
+
+      return data.data.map(fee => ({
+        type: Number(fee.type),
+        fees: {
+          minFee: Number(fee.min),
+          maxFee: Number(fee.max),
+          avgFee: Number(fee.avg)
+        }
+      }))
+    } catch (error) {
+      const { feeStatistics } = await ClientService.fetchNetworkConfig(server, apiVersion, timeout)
+
+      return feeStatistics
+    }
   }
 
   constructor (watchProfile = true) {
@@ -171,8 +216,7 @@ export default class ClientService {
             approval: delegate.approval
           },
           blocks: {
-            produced: delegate.producedblocks,
-            missed: delegate.missedblocks
+            produced: delegate.producedblocks
           },
           rank: delegate.rate
         }
@@ -586,8 +630,9 @@ export default class ClientService {
    * @returns {Object}
    */
   async buildVote ({ votes, fee, passphrase, secondPassphrase, wif }, isAdvancedFee = false, returnObject = false) {
-    if (!isAdvancedFee && fee > V1.fees[3]) {
-      throw new Error(`Vote fee should be smaller than ${V1.fees[3]}`)
+    const staticFee = store.getters['transaction/staticFee'](3) || V1.fees[3]
+    if (!isAdvancedFee && fee > staticFee) {
+      throw new Error(`Vote fee should be smaller than ${staticFee}`)
     }
 
     const transaction = transactionBuilder
@@ -618,8 +663,9 @@ export default class ClientService {
    * @returns {Object}
    */
   async buildDelegateRegistration ({ username, fee, passphrase, secondPassphrase, wif }, isAdvancedFee = false, returnObject = false) {
-    if (!isAdvancedFee && fee > V1.fees[2]) {
-      throw new Error(`Delegate registration fee should be smaller than ${V1.fees[2]}`)
+    const staticFee = store.getters['transaction/staticFee'](2) || V1.fees[2]
+    if (!isAdvancedFee && fee > staticFee) {
+      throw new Error(`Delegate registration fee should be smaller than ${staticFee}`)
     }
 
     const transaction = transactionBuilder
@@ -652,9 +698,9 @@ export default class ClientService {
    * @returns {Object}
    */
   async buildTransfer ({ amount, fee, recipientId, vendorField, passphrase, secondPassphrase, wif }, isAdvancedFee = false, returnObject = false) {
-    // To ensure that transfers cannot be build with a bigger fee than V1
-    if (!isAdvancedFee && fee > V1.fees[0]) {
-      throw new Error(`Transfer fee should be smaller than ${V1.fees[0]}`)
+    const staticFee = store.getters['transaction/staticFee'](0) || V1.fees[0]
+    if (!isAdvancedFee && fee > staticFee) {
+      throw new Error(`Transfer fee should be smaller than ${staticFee}`)
     }
 
     const transaction = transactionBuilder
@@ -686,8 +732,9 @@ export default class ClientService {
    * @returns {Object}
    */
   async buildSecondSignatureRegistration ({ fee, passphrase, secondPassphrase, wif }, isAdvancedFee = false, returnObject = false) {
-    if (!isAdvancedFee && fee > V1.fees[1]) {
-      throw new Error(`Second signature fee should be smaller than ${V1.fees[1]}`)
+    const staticFee = store.getters['transaction/staticFee'](1) || V1.fees[1]
+    if (!isAdvancedFee && fee > staticFee) {
+      throw new Error(`Second signature fee should be smaller than ${staticFee}`)
     }
 
     const transaction = transactionBuilder
