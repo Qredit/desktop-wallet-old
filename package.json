@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "qredit-desktop-wallet",
-  "version": "2.3.22",
+  "version": "2.3.23",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qredit/desktop-wallet.git"
